@@ -1,0 +1,38 @@
+{
+  "timerOptions": {
+    "time": 150000,
+    "breakTime": 2500,
+    "interval": 1000,
+    "running": false,
+    "buttonStatus": {
+      "START": "start",
+      "STOP": "stop"
+    },
+    "animation": false
+  },
+  "notification": {
+    "options": {
+      "actions": [
+        {"action": "breakTime", "title": "Take a break"},
+        {"action": "cancel", "title": "Cancel"}
+      ],
+      "requireInteraction": true,
+      "vibrate": 200,
+      "icon": "static/favicon-196x196.png",
+      "body": "Congrats! You finished yor pomodoro!"
+    },
+    "title": "Pomodoro done!"
+  },
+  "notificationOptions": {
+    "vibrate": 200,
+    "icon": "static/favicon-196x196.png",
+    "body": "Congrats! You finished yor pomodoro!"
+  },
+  "notificationTitle": "Pomodoro done!",
+  "textContent": "Tomatoes (pomodoro) work timer",
+  "colors": [
+      "#ff6347",
+      "#333333",
+      "#90ee90"
+    ]
+}

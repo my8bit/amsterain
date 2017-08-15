@@ -1,0 +1,117 @@
+@import 'app/components/style';
+@import 'app/components/nav';
+@import 'app/components/modal';
+
+
+$main-font: 'Helvetica Neue', 'Roboto', sans-serif;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: $main-font;
+  overflow: hidden;
+  color: white;
+}
+
+section {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  position: relative;
+}
+
+#chart {
+  width: 90%;
+  height: 90%;
+}
+
+main {
+  overflow: hidden;
+}
+
+.about {
+  height: 100vh;
+  background-color: ivory;
+}
+
+.description {
+  margin: 0;
+  padding: 1em;
+}
+
+.left {
+  margin-left: 3em;
+}
+
+.menu-background {
+  height: 3em;
+  color: #aaa;
+  font-weight: 100;
+  line-height: 3em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+footer {
+  font-size: small;
+  text-shadow: 1px 1px 1px black;
+  width: 100%;
+  color: white;
+  background-color: #333131;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-info {
+  padding: 1em;
+}
+
+.c3-axis, g.tick, .c3-grid  {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    fill: #aaa;
+    font-size: 1rem;
+}
+
+.c3-tooltip-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 50% !important;
+}
+
+.c3 {
+  path,
+  line {
+    fill: none;
+    stroke: #aaa;
+  }
+}
+.c3-axis-x .domain {
+  // display: none;
+}
+
+.c3-axis-x .tick line {
+  display: none;
+}
+
+.c3-xgrid-line line {
+    stroke: #aaa;
+}
+.c3-xgrid-line.now line {
+    stroke: red;
+}
+.c3-xgrid-line.now text {
+    fill: red;
+}
+.c3-ygrid-line line {
+    stroke: #aaa;
+}
+/*
+.c3-ygrid-line.grid800 line {
+    stroke: green;
+}
+.c3-ygrid-line.grid800 text {
+    fill: green;
+}
+*/
