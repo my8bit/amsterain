@@ -13,6 +13,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
+import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
 import {formatDate, addToInterval, removeFromInterval} from './app/libs/timer';
@@ -70,6 +71,11 @@ class Main extends Component {
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
           />
+        <SidebarCmp/>
+        <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
+        <label htmlFor="nav-trigger">
+          <div id="close-icon"><span></span><span></span><span></span></div>
+        </label>
         {children}
       </main>
     );

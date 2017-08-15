@@ -27,42 +27,21 @@ class SidebarList extends Component {
   }
 
   render() {
-    const {name, photo} = this.props;
     return (
       <ul className="navigation">
-        {name ?
-          <li className="nav-item" onClick={this.handleLogout}>
-            <div className="login-container">
-              <img className="avatar" src={photo}/>
-              <div className="user-info">
-                <div className="user-name">
-                  {name}
-                </div>
-                <div className="user-status">
-                  Logout <i className="fa fa-sign-out right" aria-hidden="true"></i><Ink/>
-                </div>
-              </div>
-            </div>
-          </li> :
-          <li className="nav-item" onClick={this.handleLogin}>
-            <div className="logout">Sign in with Twitter <i className="fa fa-twitter right" aria-hidden="true"></i><Ink/></div>
-          </li>}
-        <li className="nav-item"><Link to="/">Timer<i className="fa fa-clock-o right" aria-hidden="true"></i><Ink/></Link></li>
-        <li className="nav-item"><Link to="/settings">Settings<i className="fa fa-wrench right" aria-hidden="true"></i><Ink/></Link></li>
+        <li className="nav-item"><Link to="/">Perception<i className="fa fa-tint right" aria-hidden="true"></i><Ink/></Link></li>
+        <li className="nav-item"><Link to="/settings">Information<i className="fa fa-info right" aria-hidden="true"></i><Ink/></Link></li>
       </ul>
     );
   }
 }
 
 SidebarList.propTypes = {
-  name: React.PropTypes.string,
-  photo: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = store => {
-  const {name, photo} = store.userReducer;
-  return {name, photo};
+  return store;
 };
 
 export const SidebarCmp = connect(mapStateToProps)(SidebarList);
