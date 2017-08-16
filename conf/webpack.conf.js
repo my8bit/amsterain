@@ -9,6 +9,9 @@ const configFileName = `config${filenamePrefix}.json`;
 const configPath = `../${conf.path.src(configFileName)}`;
 module.exports = {
   module: {
+    noParse: [
+      /${conf.paths.tmp}/
+    ],
     eslint: {
       rules: {
         'no-warning-comments': 'off',
@@ -69,7 +72,7 @@ module.exports = {
   ],
   postcss: () => [autoprefixer],
   debug: true,
-  devtool: 'source-map',
+  devtool: 'eval', // "eval-cheap-module-source-map"
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'

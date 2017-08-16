@@ -73,6 +73,7 @@
   },
   "scripts": {
     "build": "gulp",
+    "webpack:profile": "webpack --config=conf/webpack.conf.js --profile --json > stats.json",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "test": "gulp test",

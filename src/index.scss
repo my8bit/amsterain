@@ -22,8 +22,8 @@ section {
 }
 
 #chart {
-  width: 90%;
-  height: 90%;
+  //max-width: 30vw;
+  //min-height: 70vh;
 }
 
 main {
@@ -79,6 +79,7 @@ footer {
 }
 
 .c3-tooltip-container {
+  display: none !important;
   position: fixed !important;
   top: 0 !important;
   left: 50% !important;
