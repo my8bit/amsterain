@@ -88,7 +88,7 @@ class TimerWidget extends Component {
           type: 'timeseries',
           tick: {
             // fit: true,
-            // count: 4,
+            count: 4,
             format: '%H:%M'
           }
         }
@@ -214,6 +214,7 @@ function renderChart(data) {
   });
   const preceptoin = data.map(item => item.preceptoin);
 
+  /*
   const ticks = data
     .filter((el, idx, arr) => {
       const prev = parseInt(arr[idx - 1] && arr[idx - 1].preceptoin, 10);
@@ -222,12 +223,12 @@ function renderChart(data) {
     })
     .filter(el => el.preceptoin !== '0')
     .map(el => createDateFromTime(el.time));
+  */
 
-  // console.log(ticks);
   time.unshift('x');
   preceptoin.unshift('time');
   if (chart) {
-    chart.internal.config.axis_x_tick_values = ticks; // eslint-disable-line
+    // chart.internal.config.axis_x_tick_values = ticks; // eslint-disable-line
     touch(chart);
     chart.load({
       columns: [
