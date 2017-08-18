@@ -56,6 +56,9 @@ class TimerWidget extends Component {
       point: {
         show: false
       },
+      color: {
+        pattern: ['lightskyblue']
+      },
       grid: {
         y: {
           lines: [
