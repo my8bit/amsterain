@@ -20,8 +20,7 @@ section {
 }
 
 #chart {
-  max-width: 90%;
-  min-height: 90%;
+  width: 100%;
 }
 
 main {
@@ -70,17 +69,48 @@ footer {
 }
 
 .c3-axis, g.tick, .c3-grid  {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 100;
-    fill: #aaa;
-    font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  fill: #aaa;
+  font-size: 1rem;
 }
 
+@media only screen and (max-width: 600px) {
+  .c3-axis, g.tick, .c3-grid  {
+    font-size: 3vw;
+  }
+}
+
+
 .c3-tooltip-container {
-  display: none !important;
+  display: block !important;
   position: fixed !important;
-  top: 0 !important;
-  left: 50% !important;
+  font-weight: 300;
+  color: #aaa;
+  margin: 1em;
+  font-size: 3vw;
+  // top: 80% !important;
+  // right: 2rem !important;
+  .c3-tooltip {
+    box-shadow: none;
+    background-color: transparent;
+    tr {
+      td.name {
+        display: none;
+      }
+      display: inline;
+      border: none;
+      th {
+        font-size: 1rem;
+        font-weight: 300;
+        background-color: transparent;
+      }
+    }
+    td {
+      border: none;
+      background-color: transparent;
+    }
+  }
 }
 
 .c3 {

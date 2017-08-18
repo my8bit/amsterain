@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import c3 from 'c3';
+import {getRainingTicks, createDateFromTime} from '../libs/tick.js';
 // import moment from 'moment';
-//
-
 // import {notifyMe} from '../workers/notification';
 // import {timerOptions} from '../../config';
-// import {getTimer, formatDate, addToInterval, removeFromInterval} from '../libs/timer';
+// import {getRainingTicks, formatDate, addToInterval, removeFromInterval} from '../libs/timer';
 // import Ink from 'react-ink';
+
 import Swipe from 'react-easy-swipe';
 import {loadWeerAction} from '../libs/firebase.auth';
 
@@ -90,8 +90,8 @@ class TimerWidget extends Component {
           label: 'Time',
           type: 'timeseries',
           tick: {
-            // fit: true,
-            count: 4,
+            fit: true,
+            // count: 4,
             format: '%H:%M'
           }
         }
@@ -231,7 +231,8 @@ function renderChart(data) {
   time.unshift('x');
   preceptoin.unshift('time');
   if (chart) {
-    // chart.internal.config.axis_x_tick_values = ticks; // eslint-disable-line
+    console.log(getRainingTicks(data));
+    chart.internal.config.axis_x_tick_values = getRainingTicks(data); // eslint-disable-line
     touch(chart);
     chart.load({
       columns: [
@@ -240,13 +241,6 @@ function renderChart(data) {
       ]
     });
   }
-}
-
-function createDateFromTime(time) {
-  const min = time.split(':')[1];
-  const hour = time.split(':')[0];
-  const d = new Date();
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, min);
 }
 
 TimerWidget.propTypes = {
