@@ -7,11 +7,7 @@ const webpackConf = require('./webpack.conf');
 const webpackBundler = webpack(webpackConf);
 
 module.exports = function () {
-  return {
-    https: {
-      key: path.resolve(process.env.TOMATOES_SERVER_KEY),
-      cert: path.resolve(process.env.TOMATOES_SERVER_CRT)
-    },
+  let main = {
     server: {
       baseDir: [
         conf.paths.tmp,
@@ -33,4 +29,21 @@ module.exports = function () {
     },
     open: false
   };
+  if (process.env.PORT &&
+    process.env.IP) {
+    main = Object.assign(main, {
+      port: process.env.PORT,
+      host: process.env.IP
+    });
+  }
+  if (process.env.TOMATOES_SERVER_KEY &&
+    process.env.TOMATOES_SERVER_CRT) {
+    main = Object.assign(main, {
+      https: {
+        key: path.resolve(process.env.TOMATOES_SERVER_KEY),
+        cert: path.resolve(process.env.TOMATOES_SERVER_CRT)
+      }
+    });
+  }
+  return main;
 };

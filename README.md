@@ -1,7 +1,10 @@
-# [www.tomatoes.work](https://www.tomatoes.work)
+# Raining prediction [https://amsterdam-neerslag.nl](https://amsterdam-neerslag.nl)
+### Will it be rainy in nearest 2 hours in Amsterdam?
+#### Find out on [amsterdam-neerslag.nl](https://amsterdam-neerslag.nl)
+### Zal het regenachtig zijn in de komende 2 uur in Amsterdam?
+#### Ontdek op [amsterdam-neerslag.nl](https://amsterdam-neerslag.nl)
 
-# Just another pomodoro timer that was inspired by Pomodoro Technique®
-BUT this application is not affiliated with, associated with nor endorsed by the Pomodoro Technique® or Francesco Cirillo.
+This is the precipitation prediction application based on [buienradar](https://www.buienradar.nl/overbuienradar/gratis-weerdata) data for Amsterdam city
 
 # Badges swag
 [![bitHound Overall Score](https://www.bithound.io/github/my8bit/25.minu.tk/badges/score.svg)](https://www.bithound.io/github/my8bit/25.minu.tk)

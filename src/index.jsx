@@ -56,7 +56,7 @@ class Main extends Component {
             {rel: 'icon', type: 'image/png', href: 'static/favicon-128.png', sizes: '128x128'}
           ]}
           meta={[
-            {name: 'description', content: 'Just another tomatoes (pomodoro) timer'},
+            {name: 'description', content: 'Amsterdam neerslag in de komende 2 uur'},
             {name: 'application-name', content: textContent},
             {name: 'apple-mobile-web-app-capable', content: 'yes'},
             {name: 'mobile-web-app-capable', content: 'yes'},
@@ -85,7 +85,7 @@ class Main extends Component {
 const mapStateToProps = store => {
   const {color} = store.representationReducer;
   const {time, startTime} = store.timerReducer;
-  return {color, time, startTime, name};
+  return {color, time, startTime};
 };
 
 Main.propTypes = {

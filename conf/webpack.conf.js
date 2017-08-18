@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const filenamePrefix = process.env.DEVELOPMENT === 'true' ? '.dev' : '';
 const configFileName = `config${filenamePrefix}.json`;
 const configPath = `../${conf.path.src(configFileName)}`;
+
 module.exports = {
   module: {
     noParse: [

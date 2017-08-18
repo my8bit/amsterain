@@ -1,6 +1,6 @@
 {
-  "name": "Tomatoes.Work",
-  "short_name": "Tomatoes.Work",
+  "name": "Amsterdam Neerslag",
+  "short_name": "amsterdam-neerslag.nl",
   "icons": [
     {
       "src": "static/mstile-144x144.png",
@@ -26,7 +26,7 @@
       "density": 2.0
     }
   ],
-  "background_color": "#ff6347",
+  "background_color": "#333131",
   "start_url": "/",
   "display": "fullscreen",
   "orientation": "any"
