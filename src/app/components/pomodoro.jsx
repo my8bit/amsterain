@@ -76,9 +76,9 @@ class TimerWidget extends Component {
         enabled: true
       },
       padding: {
-        right: 20,
+        right: 30,
         bottom: 100,
-        left: 20
+        left: 30
       },
       axis: {
         y: {
@@ -90,8 +90,9 @@ class TimerWidget extends Component {
           label: 'Time',
           type: 'timeseries',
           tick: {
-            fit: true,
-            // count: 4,
+            // fit: false,
+            // count: 5,
+            count: () => Math.round(chart.element.offsetWidth / 75),
             format: '%H:%M'
           }
         }
@@ -158,7 +159,6 @@ function touch(chart) {
 
   // touch event handler
   function touchHandler() {
-    console.log('touchHandler');
     const touch = window.d3.event.changedTouches[0];
     const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
     let className;
@@ -186,7 +186,7 @@ function touch(chart) {
     $focusLine.attr({
       x1: x,
       x2: x
-    }).style('visibility', 'visible');
+    }); // .style('visibility', 'visible');
   }
 
   // expand selected point
@@ -232,7 +232,7 @@ function renderChart(data) {
   preceptoin.unshift('time');
   if (chart) {
     console.log(getRainingTicks(data));
-    chart.internal.config.axis_x_tick_values = getRainingTicks(data); // eslint-disable-line
+    // chart.internal.config.axis_x_tick_values = getRainingTicks(data); // eslint-disable-line
     touch(chart);
     chart.load({
       columns: [

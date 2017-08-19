@@ -70,26 +70,34 @@ footer {
 
 .c3-axis, g.tick, .c3-grid  {
   font-family: 'Roboto', sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   fill: #aaa;
   font-size: 1rem;
 }
 
+g.tick {
+  font-size: 1.1rem;
+}
+
+.c3-xgrid-focus > line {
+  visibility: visible !important;
+}
+/*
 @media only screen and (max-width: 600px) {
   .c3-axis, g.tick, .c3-grid  {
     font-size: 3vw;
   }
 }
-
+*/
 
 .c3-tooltip-container {
   display: block !important;
-  position: fixed !important;
+  position: static !important;
   font-weight: 300;
   color: #aaa;
-  margin: 1em;
+  // margin: 1em;
   font-size: 3vw;
-  // top: 80% !important;
+  top: 1em !important;
   // right: 2rem !important;
   .c3-tooltip {
     box-shadow: none;
