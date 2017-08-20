@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 
 export class Home extends Component {
   render() {
-    const {color} = this.props;
+    const {color, value, time} = this.props;
     return (
       <section id="home" className="timer site-wrap" style={{backgroundColor: color}}>
-        <div className="menu-background transparent">Amsterdam Neerslag</div>
+        <div className="menu-background transparent"><span>{time}</span><span className="value"> {value} </span>A&apos;dam Neerslag</div>
         <Timer/>
       </section>
     );
@@ -20,11 +20,16 @@ export class Home extends Component {
  */
 
 //  <small>source: <a href="https://www.buienradar.nl/overbuienradar/gratis-weerdata">www.buienradar.nl</a></small>
-Home.propTypes = {color: React.PropTypes.string.isRequired};
+Home.propTypes = {
+  time: React.PropTypes.string.isRequired,
+  color: React.PropTypes.string.isRequired,
+  value: React.PropTypes.number.isRequired
+};
 
 const mapStateToProps = store => {
+  const {value, time} = store.tooltipReducer;
   const {color} = store.representationReducer;
-  return {color};
+  return {color, value, time};
 };
 
 export const HomeCmp = connect(mapStateToProps)(Home);

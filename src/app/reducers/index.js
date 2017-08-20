@@ -51,6 +51,18 @@ export const loadReducer = (state = {data: []}, action) => {
   }
 };
 
+export const tooltipReducer = (state = {value: 0, time: ''}, action) => {
+  switch (action.type) {
+    case 'CHANGE_TIP':
+      return Object.assign({}, state, {
+        value: action.value,
+        time: action.time // `${action.time}:${action.time}`
+      });
+    default:
+      return state;
+  }
+};
+
 export const timerReducer = (state = {
   time,
   startTime: /* parseInt(localStorage.getItem('startTime'), 10) || */ 0,

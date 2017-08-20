@@ -177,6 +177,7 @@ export const loginAction = () => dispatch => {
 export const loadWeerAction = () => dispatch => {
   // simplified=1
   // https://api.apifier.com/v1/bf2sc3BAivRhKYniR/crawlers/buienradar/lastExec/results?token=FNnGvnYTXCkQEc9DH5DHt2bme&simplified=1
+  console.log('url', url);
   fetch(url)
   // fetch('https://api.apifier.com/v1/execs/H43ga4uKtWgHu6rbG/results?format=json')
     .then(res => res.json())
