@@ -1,4 +1,5 @@
 import {colors, timerOptions} from 'config';
+import {createDateFromTime} from '../libs/tick.js';
 
 const {time, breakTime} = timerOptions;
 const savedColor = /* localStorage.getItem('color') || */ colors[1]; // TODO: check if there are localstorage
@@ -40,11 +41,21 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
   }
 };
 
-export const loadReducer = (state = {data: []}, action) => {
+export const loadReducer = (state = {time1: [], preceptoin1: [], data: []}, action) => {
   switch (action.type) {
     case 'LOAD':
       return Object.assign({}, state, {
-        data: action.data
+        data: action.data,
+        time1: ['x'].concat(action.data.map((item, idx, arr) => {
+          const time = createDateFromTime(item.time);
+          if (idx < arr.length - 1) {
+            if (parseInt(item.time.split(':')[0], 10) - parseInt(arr[idx + 1].time.split(':')[0], 10) === 23) {
+              time.setDate(time.getDate() - 1);
+            }
+          }
+          return time;
+        })),
+        preceptoin1: ['time'].concat(action.data.map(item => item.preceptoin))
       });
     default:
       return state;

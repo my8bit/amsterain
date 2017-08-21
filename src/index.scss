@@ -19,12 +19,12 @@ section {
   position: relative;
 }
 
-#chart {
+.chart {
   width: 100%;
 }
 
 @media screen and (orientation:landscape) and (min-width: 600px) {
-  #chart {
+  .chart {
     height: 75vh;
     width: 100%;
   }
