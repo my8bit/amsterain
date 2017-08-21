@@ -9,6 +9,7 @@
     "msgr": "^2.0.0",
     "paper-ripple": "^0.2.0",
     "react": "^15.4.2",
+    "react-c3js": "^0.1.19",
     "react-dom": "^15.4.2",
     "react-easy-swipe": "0.0.8",
     "react-helmet": "^3.1.0",
