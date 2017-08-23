@@ -59,11 +59,51 @@ class TimerWidget extends Component {
       this.chartWidth = ch && ch.chart.element;
       console.log(this.chartWidth);
       console.log('++++++++++++++++++++++++++++++++++++ REF ++++++++++++++++++++++++++++++++++++++++');
-      /*
-      document.querySelector('.c3-event-rects').addEventListener('touchmove',
-        e => {
+
+      const element = ch && ch.chart.element;
+      if (element) {
+        const $$ = ch.chart.internal;
+        const $el = window.d3.select(element);
+        const $focusLine = $el.select('.c3-xgrid-focus > line');
+        const $rect = $el.select('.c3-event-rects');
+        // console.log('++++++++++++++++++++++++++++++++++++ REEEECT ++++++++++++++++++++++++++++++++++++++++');
+        // console.log($rect);
+        $rect.on('touchmove', () => {
+          // console.log($rect);
           const touch = window.d3.event.changedTouches[0];
-          const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
+          const $rect2 = document.elementFromPoint(touch.clientX, touch.clientY);
+          // console.log($rect2, touch);
+          if ($rect2) {
+            const className = $rect2.getAttribute('class');
+            const index = className && dispatch && ~~className.match(/\d+$/);
+            const selectedData = $$.filterTargetsToShow($$.data.targets).map(t => {
+              return $$.addName($$.getValueOnIndex(t.values, index));
+            });
+            showFocusLine($rect2);
+            const min = selectedData[0].x.getMinutes() < 10 ? `0${selectedData[0].x.getMinutes()}` : selectedData[0].x.getMinutes();
+            const time = `${selectedData[0].x.getHours()}:${min}`;
+            const value = selectedData[0].value;
+            console.log(time, value);
+            dispatch({
+              type: 'CHANGE_TIP',
+              value,
+              time
+            });
+          }
+          function showFocusLine($rect2) {
+            // TODO
+            const x = Math.floor(~~$rect2.getAttribute('x') + ~~$rect2.getAttribute('width') / 2);
+            $focusLine.attr({x1: x, x2: x}).style('visibility', 'visible');
+          }
+        });
+      }
+
+      document.querySelector('.c3-event-rects').addEventListener('touchmove',
+        () => {
+          // const touch = window.d3.event.changedTouches[0];
+          // const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
+          // console.log(e);
+          /*
           if ($rect) {
             className = $rect.getAttribute('class');
             const index = className && ~~className.match(/\d+$/);
@@ -81,20 +121,21 @@ class TimerWidget extends Component {
               time
             });
           }
+          */
         },
         true);
-      function showFocusLine($rect) {
-        const x = Math.floor(~~$rect.getAttribute('x') + ~~$rect.getAttribute('width') / 2);
-        document.querySelector('.c3-xgrid-focus > line').attr({x1: x, x2: x}).style('visibility', 'visible');
-      }*/
+      // function showFocusLine($rect) {
+      //   const x = Math.floor(~~$rect.getAttribute('x') + ~~$rect.getAttribute('width') / 2);
+      //   document.querySelector('.c3-xgrid-focus > line').attr({x1: x, x2: x}).style('visibility', 'visible');
+      // }
     };
     return (
       <div
         className="container"
         onTouchMove={function () {
-          const touch = window.d3.event.changedTouches[0];
-          const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
-          console.log(touch, $rect);
+          // const touch = window.d3.event.changedTouches[0];
+          // const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
+          // console.log(touch, $rect);
         }}
         >
         <C3Chart
