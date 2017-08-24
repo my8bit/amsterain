@@ -19,8 +19,15 @@ section {
   position: relative;
 }
 
-#chart {
+.chart {
   width: 100%;
+}
+
+@media screen and (orientation:landscape) and (min-width: 600px) {
+  .chart {
+    height: 75vh;
+    width: 100%;
+  }
 }
 
 main {
@@ -33,8 +40,18 @@ main {
 }
 
 .description {
+  font-size: 1em;
+  a {
+    color: lightskyblue;
+    text-decoration: none;
+  }
   margin: 0;
-  padding: 1em;
+  div {
+    padding: .25em;
+  }
+  .heart {
+    color: red;
+  }
 }
 
 .left {
@@ -48,10 +65,16 @@ main {
   line-height: 2.8em;
   font-size: 1.4em;
   text-align: center;
+  // padding-right: 1em;
+  .value {
+    display: inline-block;
+    width: 3em;
+  }
 }
 
-.dark {
-  background-color: rgb(51, 51, 51);
+.dark, .transparent {
+  background-color: #333133;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 footer {
@@ -70,13 +93,18 @@ footer {
 
 .c3-axis, g.tick, .c3-grid  {
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  fill: #aaa;
+  font-weight: 100;
+  fill: white;
+  stroke: white;
   font-size: 1rem;
 }
 
 g.tick {
   font-size: 1.1rem;
+}
+
+.c3-ygrid-line line {
+    stroke: white;
 }
 
 .c3-xgrid-focus > line {
@@ -92,14 +120,31 @@ g.tick {
 
 .c3-tooltip-container {
   display: block !important;
-  position: static !important;
+  position: absolute !important;
   font-weight: 300;
   color: #aaa;
   // margin: 1em;
   font-size: 3vw;
-  top: 1em !important;
+  top: -217px !important;
+  left: 62px !important;
+
+  color: white;
+  font-weight: 300;
+  line-height: 2.8em;
+  font-size: 1.4em;
+  text-align: center;
+
   // right: 2rem !important;
   .c3-tooltip {
+    .c3-tooltip-name--time {
+      .value {
+        color: white;
+        font-size: 1.4rem;
+      }
+      .value:after {
+        content: "mm/h";
+      }
+    }
     box-shadow: none;
     background-color: transparent;
     tr {
@@ -109,8 +154,13 @@ g.tick {
       display: inline;
       border: none;
       th {
-        font-size: 1rem;
+        height: 1em;
+        padding: 0;
+        color: white;
         font-weight: 300;
+        // line-height: 2.8em;
+        font-size: 1.4rem;
+
         background-color: transparent;
       }
     }
@@ -125,7 +175,7 @@ g.tick {
   path,
   line {
     fill: none;
-    stroke: #aaa;
+    stroke: white;
   }
 }
 .c3-axis-x .domain {
@@ -136,17 +186,16 @@ g.tick {
   display: none;
 }
 
-.c3-xgrid-line line {
-    stroke: #aaa;
-}
 .c3-xgrid-line.now line {
     stroke: red;
 }
+
 .c3-xgrid-line.now text {
     fill: red;
 }
+
 .c3-ygrid-line line {
-    stroke: #aaa;
+    //stroke: white;
 }
 /*
 .c3-ygrid-line.grid800 line {
