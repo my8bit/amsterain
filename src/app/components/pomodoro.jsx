@@ -1,103 +1,33 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import C3Chart from 'react-c3js';
+import BillboardChart from 'react-billboard.js';
 import {loadWeerAction} from '../libs/firebase.auth';
 const chartId = 'chart';
-
 class TimerWidget extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch(loadWeerAction());
+  }
   shouldComponentUpdate(nextProps) {
     return !_.isEqual(nextProps.time1, this.props.time1);
   }
   componentWillMount() {
-    const {dispatch} = this.props;
-    dispatch(loadWeerAction());
+    // const {dispatch} = this.props;
+    // dispatch(loadWeerAction());
   }
-
-  /*
-
-  function touch(chart, dispatch) {
-    const $$ = chart.internal;
-    const element = document.querySelector(`#${chartId}`);
-    const $el = window.d3.select(element);
-    const $rect = $el.select('.c3-event-rects');
-    const $focusLine = $el.select('.c3-xgrid-focus > line');
-    let fn;
-    $rect.on('touchmove', () => {
-      const touch = window.d3.event.changedTouches[0];
-      const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
-      let className;
-      if ($rect) {
-        className = $rect.getAttribute('class');
-        const index = className && dispatch && ~~className.match(/\d+$/);
-        const selectedData = $$.filterTargetsToShow($$.data.targets).map(t => {
-          return $$.addName($$.getValueOnIndex(t.values, index));
-        });
-        showFocusLine($rect);
-        const min = selectedData[0].x.getMinutes() < 10 ? `0${selectedData[0].x.getMinutes()}` : selectedData[0].x.getMinutes();
-        const time = `${selectedData[0].x.getHours()}:${min}`;
-        const value = selectedData[0].value;
-        dispatch({
-          type: 'CHANGE_TIP',
-          value,
-          time
-        });
-      }
-    });
-    function showFocusLine($rect) {
-      const x = Math.floor(~~$rect.getAttribute('x') + ~~$rect.getAttribute('width') / 2);
-      $focusLine.attr({x1: x, x2: x}).style('visibility', 'visible');
-    }
-  }
- */
   render() {
     const {preceptoin1, time1, dispatch} = this.props;
     console.log('************************************** RENDER *************************************************');
 
     const ch = ch => {
       this.chartWidth = ch && ch.chart.element;
-      console.log(this.chartWidth);
-      console.log('++++++++++++++++++++++++++++++++++++ REF ++++++++++++++++++++++++++++++++++++++++');
-      /*
-      document.querySelector('.c3-event-rects').addEventListener('touchmove',
-        e => {
-          const touch = window.d3.event.changedTouches[0];
-          const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
-          if ($rect) {
-            className = $rect.getAttribute('class');
-            const index = className && ~~className.match(/\d+$/);
-
-            const selectedData = $$.filterTargetsToShow($$.data.targets).map(t => {
-              return $$.addName($$.getValueOnIndex(t.values, index));
-            });
-            showFocusLine($rect);
-            const min = selectedData[0].x.getMinutes() < 10 ? `0${selectedData[0].x.getMinutes()}` : selectedData[0].x.getMinutes();
-            const time = `${selectedData[0].x.getHours()}:${min}`;
-            const value = selectedData[0].value;
-            dispatch({
-              type: 'CHANGE_TIP',
-              value,
-              time
-            });
-          }
-        },
-        true);
-      function showFocusLine($rect) {
-        const x = Math.floor(~~$rect.getAttribute('x') + ~~$rect.getAttribute('width') / 2);
-        document.querySelector('.c3-xgrid-focus > line').attr({x1: x, x2: x}).style('visibility', 'visible');
-      }*/
     };
     return (
       <div
         className="container"
-        onTouchMove={function () {
-          const touch = window.d3.event.changedTouches[0];
-          const $rect = document.elementFromPoint(touch.clientX, touch.clientY);
-          console.log(touch, $rect);
-        }}
         >
-        <C3Chart
+        <BillboardChart
           className="chart"
           id={chartId}
           ref={ch}
@@ -124,13 +54,6 @@ class TimerWidget extends Component {
                 value,
                 time
               });
-            },
-            position: () => {
-              const d3evt = window.d3.event;
-              const event = (d3evt.type === 'touchmove') ?
-                d3evt.changedTouches[0] :
-                d3evt;
-              return {top: event.clientY, left: event.clientX};
             }
           }}
           grid={{
