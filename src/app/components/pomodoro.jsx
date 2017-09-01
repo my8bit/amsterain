@@ -3,23 +3,16 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import BillboardChart from 'react-billboard.js';
 import {loadWeerAction} from '../libs/firebase.auth';
-const chartId = 'chart';
 class TimerWidget extends Component {
-  componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch(loadWeerAction());
-  }
   shouldComponentUpdate(nextProps) {
     return !_.isEqual(nextProps.time1, this.props.time1);
   }
   componentWillMount() {
-    // const {dispatch} = this.props;
-    // dispatch(loadWeerAction());
+    const {dispatch} = this.props;
+    dispatch(loadWeerAction());
   }
   render() {
     const {preceptoin1, time1, dispatch} = this.props;
-    console.log('************************************** RENDER *************************************************');
-
     const ch = ch => {
       this.chartWidth = ch && ch.chart.element;
     };
@@ -29,7 +22,7 @@ class TimerWidget extends Component {
         >
         <BillboardChart
           className="chart"
-          id={chartId}
+          id="chart"
           ref={ch}
           data={{
             x: 'x',

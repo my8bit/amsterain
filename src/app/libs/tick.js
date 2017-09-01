@@ -5,6 +5,10 @@ export const createDateFromTime = time => {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, min);
 };
 
+export const parseTimeToNumber = time => {
+  return parseInt(time.split(':')[0], 10);
+}
+
 export const getRainingTicks = data => {
   return data
     .filter((el, idx, arr) => {

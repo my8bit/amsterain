@@ -77,8 +77,7 @@ class Main extends Component {
 
 const mapStateToProps = store => {
   const {color} = store.representationReducer;
-  const {time, startTime} = store.timerReducer;
-  return {color, time, startTime};
+  return {color};
 };
 
 Main.propTypes = {
