@@ -7,7 +7,7 @@ export const createDateFromTime = time => {
 
 export const parseTimeToNumber = time => {
   return parseInt(time.split(':')[0], 10);
-}
+};
 
 export const getRainingTicks = data => {
   return data

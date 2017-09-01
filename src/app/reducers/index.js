@@ -1,7 +1,6 @@
-import {colors, timerOptions} from 'config';
-import {createDateFromTime, parseTimeToNumber} from '../libs/tick.js';
+import {colors} from 'config';
+import {createDateFromTime} from '../libs/tick.js';
 
-const {time, breakTime} = timerOptions;
 const savedColor = colors[1];
 
 const getColor = color => {
@@ -42,14 +41,12 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
 };
 
 export const loadReducer = (state = {time1: [], preceptoin1: [], data: []}, action) => {
-  let isTomorrow = false;
   switch (action.type) {
     case 'LOAD':
       return Object.assign({}, state, {
         data: action.data,
         time1: ['x'].concat(action.data.map((item, idx, arr) => {
           const time = createDateFromTime(item.time);
-          const firstItem =parseInt(arr[0].time.split(':')[0], 10) === 23;
           if (idx < arr.length - 1) {
             if (parseInt(item.time.split(':')[0], 10) === 1) {
               time.setDate(time.getDate() + 1);
