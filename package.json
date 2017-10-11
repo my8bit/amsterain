@@ -9,7 +9,7 @@
     "msgr": "^2.0.0",
     "paper-ripple": "^0.2.0",
     "react": "^15.4.2",
-    "react-billboard.js": "github:my8bit/react-c3js#billboard",
+    "react-billboard.js": "github:my8bit/react-billboard.js",
     "react-c3js": "^0.1.19",
     "react-dom": "^15.4.2",
     "react-helmet": "^3.1.0",
@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.2.2",
-    "awesome-typescript-loader": "^3.2.3",
     "babel-core": "^6.26.0",
     "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.0",
@@ -68,10 +67,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.1.2",
-    "source-map-loader": "^0.2.2",
     "style-loader": "^0.13.0",
-    "ts-loader": "^2.3.7",
-    "typescript": "^2.5.3",
     "webpack": "2.1.0-beta.8",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2",
@@ -89,9 +85,7 @@
     "start": "export DEVELOPMENT=true || set DEVELOPMENT=true && gulp serve",
     "test:auto": "gulp test:auto"
   },
-  "pre-push": [
-    "build"
-  ],
+  "pre-push": [],
   "jest": {
     "collectCoverageFrom": [
       "./src/**/*.js",
