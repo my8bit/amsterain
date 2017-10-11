@@ -65,7 +65,7 @@ class Main extends Component {
           ]}
           />
         <SidebarCmp/>
-        <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
+        <input accessKey="t" type="checkbox" id="nav-trigger" className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
         </label>
