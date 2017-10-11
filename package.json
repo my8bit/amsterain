@@ -3,6 +3,7 @@
     "authlify-js": "^0.5.2",
     "c3": "^0.4.17",
     "firebase": "^3.9.0",
+    "lighthouse-ci": "github:ebidel/lighthouse-ci",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-duration-format": "^1.3.0",
