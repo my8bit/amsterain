@@ -1,0 +1,6 @@
+language: node_js
+node_js:
+  - "iojs"
+  - "7"
+after_success:
+  - node node_modules/lighthouse-ci/runlighthouse.js https://tomatoes.work
