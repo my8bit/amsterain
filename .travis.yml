@@ -3,5 +3,10 @@ addons:
   chrome: stable
 node_js:
   - "7"
+install:
+  - npm install
+script:
+  - npm run build
 after_success:
+  - npm run netlify -- deploy -t $NETLIFY_AUTH
   - node node_modules/lighthouse-ci/runlighthouse.js https://tomatoes.work
