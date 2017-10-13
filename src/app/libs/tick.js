@@ -1,14 +1,14 @@
-export const createDateFromTime = time => {
-  const min = time.split(':')[1];
-  const hour = time.split(':')[0];
-  const d = new Date();
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, min);
+// @flow
+
+export const createDateFromTime = (time: string) :Date => {
+  const [min, hour] = time.split(':').map(num => parseInt(num, 10));
+  const date = new Date();
+  return new Date(
+    date.getFullYear(), date.getMonth(), date.getDate(), hour, min
+  );
 };
 
-export const parseTimeToNumber = time => {
-  return parseInt(time.split(':')[0], 10);
-};
-
+/*
 export const getRainingTicks = data => {
   return data
     .filter((el, idx, arr) => {
@@ -20,7 +20,6 @@ export const getRainingTicks = data => {
     .map(el => createDateFromTime(el.time));
 };
 
-/*
 const ticks = data
   .filter((el, idx, arr) => {
     const prev = parseInt(arr[idx - 1] && arr[idx - 1].preceptoin, 10);
