@@ -1,6 +1,6 @@
 // @flow
 
-export const createDateFromTime = (time: string) :Date => {
+export const createDateFromTime = (time: string): Date => {
   const [min, hour] = time.split(':').map(num => parseInt(num, 10));
   const date = new Date();
   return new Date(
@@ -8,7 +8,7 @@ export const createDateFromTime = (time: string) :Date => {
   );
 };
 
-/*
+/* TODO:
 export const getRainingTicks = data => {
   return data
     .filter((el, idx, arr) => {

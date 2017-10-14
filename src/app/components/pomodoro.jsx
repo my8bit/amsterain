@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import BillboardChart from 'react-billboard.js';
@@ -16,14 +18,15 @@ class TimerWidget extends Component {
     const ch = ch => {
       this.chartWidth = ch && ch.chart.element;
     };
+    // TODO: ??? className="chart"
     return (
       <div
         className="container"
-        >
+      >
         <BillboardChart
-          className="chart"
-          id="chart"
           ref={ch}
+
+          id="chart"
           data={{
             x: 'x',
             type: 'area-spline',
@@ -63,6 +66,14 @@ class TimerWidget extends Component {
               ]
             }
           }}
+        />
+      </div>
+    );
+  }
+}
+
+/* TODO: RETURN BACK
+
           axis={{
             y: {max: 300, show: false},
             x: {
@@ -70,7 +81,6 @@ class TimerWidget extends Component {
               type: 'timeseries',
               tick: {
                 count: () => {
-                  // TODO
                   const width = this.chartWidth && this.chartWidth.offsetWidth || 0;
                   return Math.round(width / 75);
                 },
@@ -78,19 +88,12 @@ class TimerWidget extends Component {
               }
             }
           }}
-          />
-      </div>
-   );
-  }
-}
+ */
 
 TimerWidget.propTypes = {
-  data: React.PropTypes.array,
-  time1: React.PropTypes.array,
-  preceptoin1: React.PropTypes.array,
-  value: React.PropTypes.number.isRequired,
-  time: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  time1: PropTypes.array.isRequired,
+  preceptoin1: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = store => {

@@ -7,6 +7,7 @@ Offline.install();
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
@@ -63,11 +64,11 @@ class Main extends Component {
             {name: 'msapplication-navbutton-color', content: color},
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
-          />
+        />
         <SidebarCmp/>
         <input accessKey="t" type="checkbox" id="nav-trigger" className="nav-trigger"/>
         <label htmlFor="nav-trigger">
-          <div id="close-icon"><span></span><span></span><span></span></div>
+          <div id="close-icon"><span/><span/><span/></div>
         </label>
         {children}
       </main>
@@ -81,11 +82,10 @@ const mapStateToProps = store => {
 };
 
 Main.propTypes = {
-  startTime: React.PropTypes.number.isRequired,
-  time: React.PropTypes.number.isRequired,
-  color: React.PropTypes.string.isRequired,
-  children: React.PropTypes.element.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  startTime: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired
 };
 
 const App = connect(mapStateToProps)(Main);

@@ -1,8 +1,8 @@
 {
   "presets": [
+    "flow",
     "react",
-    "es2015",
-    "flow"
+    "es2015"
   ],
   "plugins": [
     ["babel-plugin-webpack-aliases", {

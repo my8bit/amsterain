@@ -1,4 +1,5 @@
-/* global FIREBASE_API_KEY,
+/*
+  global FIREBASE_API_KEY,
           FIREBASE_AUTH_DOMAIN,
           FIREBASE_DATABASE_URL,
           FIREBASE_PROJECT_ID,
@@ -37,41 +38,42 @@ window.readKey = () => {
   });
 };
 
-// function writeUserData(userId, photoURL) {
-//   firebase.database().ref(`users/${userId}`).set({
-//     photo: photoURL
-//   });
-// }
-// window.signInTwitter = () => {
-//   firebase.auth().signInWithPopup(provider).then(result => {
-//     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-//     // You can use these server side with your app's credentials to access the Twitter API.
-//     const token = result.credential.accessToken;
-//     const secret = result.credential.secret;
-//     // The signed-in user info.
-//     const user = result.user;
-//     console.log(token, secret, user);
-//     writeUserData(user.uid, user.photoURL);
-//   }).catch(error => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.email;
-//     // The firebase.auth.AuthCredential type that was used.
-//     const credential = error.credential;
-//     console.log(errorCode, errorMessage, email, credential);
-//   });
-// };
-// window.signOutTwitter = () => {
-//   firebase.auth().signOut().then(() => {
-//     // Sign-out successful.
-//   }).catch(error => {
-//     console.log(error);
-//     // An error happened.
-//   });
-// };
-
+/* TODO: REMOVE
+function writeUserData(userId, photoURL) {
+  firebase.database().ref(`users/${userId}`).set({
+    photo: photoURL
+  });
+}
+window.signInTwitter = () => {
+  firebase.auth().signInWithPopup(provider).then(result => {
+    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+    // You can use these server side with your app's credentials to access the Twitter API.
+    const token = result.credential.accessToken;
+    const secret = result.credential.secret;
+    // The signed-in user info.
+    const user = result.user;
+    console.log(token, secret, user);
+    writeUserData(user.uid, user.photoURL);
+  }).catch(error => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    const credential = error.credential;
+    console.log(errorCode, errorMessage, email, credential);
+  });
+};
+window.signOutTwitter = () => {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch(error => {
+    console.log(error);
+    // An error happened.
+  });
+};
+*/
 export const logoutAction = () => dispatch => {
   firebase.auth().signOut().then(() => {
     dispatch({
@@ -87,7 +89,6 @@ export const timerAction = time => dispatch => {
   const type = time ? 'RESET' : 'START';
   const startTime = time ? 0 : (new Date()).getTime();
 
-  // localStorage.setItem('startTime', startTime);
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       database.ref(`users/${user.uid}`).set({
@@ -147,8 +148,6 @@ export const loginAction = () => dispatch => {
     // const secret = result.credential.secret;
     // The signed-in user info.
     const user = result.user;
-    // console.log(token, secret, user);
-    // console.log(user.photoURL);
     dispatch({
       type: 'LOGIN',
       name: user.name,
@@ -175,8 +174,8 @@ export const loginAction = () => dispatch => {
 };
 
 export const loadWeerAction = () => dispatch => {
-  // simplified=1
-  // https://api.apifier.com/v1/bf2sc3BAivRhKYniR/crawlers/buienradar/lastExec/results?token=FNnGvnYTXCkQEc9DH5DHt2bme&simplified=1
+  // TODO: simplified=1
+  // TODO: https://api.apifier.com/v1/bf2sc3BAivRhKYniR/crawlers/buienradar/lastExec/results?token=FNnGvnYTXCkQEc9DH5DHt2bme&simplified=1
   console.log('url', url);
   fetch(url)
   // fetch('https://api.apifier.com/v1/execs/H43ga4uKtWgHu6rbG/results?format=json')

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import {Timer} from '../components/pomodoro.jsx';
 import {connect} from 'react-redux';
 
@@ -21,9 +23,9 @@ export class Home extends Component {
 
 //  <small>source: <a href="https://www.buienradar.nl/overbuienradar/gratis-weerdata">www.buienradar.nl</a></small>
 Home.propTypes = {
-  time: React.PropTypes.string.isRequired,
-  color: React.PropTypes.string.isRequired,
-  value: React.PropTypes.number.isRequired
+  time: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired
 };
 
 const mapStateToProps = store => {

@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const filenamePrefix = process.env.DEVELOPMENT === 'true' ? '.dev' : '';
 const configFileName = `config${filenamePrefix}.json`;
 const configPath = `../${conf.path.src(configFileName)}`;
+const FlowWebpackPlugin = require('flow-webpack-plugin')
 
 module.exports = {
   module: {
@@ -36,7 +37,7 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: "ts-loader"
+        loader: 'ts-loader'
       },
       {
         test: /\.(css|scss|sass)$/,
@@ -52,7 +53,7 @@ module.exports = {
         exclude: /node_modules/,
         loaders: [
           'react-hot',
-          'babel-loader?presets[]=react,presets[]=es2015'
+          'babel'
         ]
       }
     ]
@@ -73,6 +74,7 @@ module.exports = {
       inject: true
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new FlowWebpackPlugin(),
     new OfflinePlugin()
   ],
   postcss: () => [autoprefixer],
