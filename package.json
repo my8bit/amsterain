@@ -60,7 +60,6 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-phantomjs-shim": "^1.1.2",
     "karma-webpack": "^1.7.0",
-    "netlify": "^1.2.0",
     "netlify-cli": "^1.2.2",
     "node-sass": "^3.4.2",
     "offline-plugin": "^3.4.2",
@@ -77,7 +76,8 @@
     "webpack-split-by-path": "^1.0.0"
   },
   "scripts": {
-    "netlify": "netlify deploy -e stage -t $NETLIFY_TOKEN ",
+    "nf": "netlify",
+    "netlify": "netlify deploy -e stage -t $NETLIFY_TOKEN",
     "build": "gulp",
     "travis": "curl -s -X POST -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Travis-API-Version: 3\" -H \"Authorization: token $TRAVIS_TOKEN\" -d \"$TRAVIS_BODY\" https://api.travis-ci.org/repo/my8bit%2Famsterdam-neerslag/requests",
     "prelint": "eslint --fix src/",
