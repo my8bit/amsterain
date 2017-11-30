@@ -3,4 +3,5 @@ echo $DEPLOY_OUTPUT
 URL=$(grep -iIohE 'http?://[^[:space:]]+' <<< $DEPLOY_OUTPUT)
 #URL=${URL/http/https}
 echo $URL
-node node_modules/lighthouse-ci/runlighthouse.js $URL
+#node node_modules/lighthouse-ci/runlighthouse.js $URL
+node node_modules/lighthouse-ci/runlighthouse.js https://amsterdam-neerslag.nl/
