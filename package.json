@@ -60,7 +60,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-phantomjs-shim": "^1.1.2",
     "karma-webpack": "^1.7.0",
-    "netlify-cli": "^1.2.2",
+    "netlify-cli": "github:my8bit/netlify-cli",
     "node-sass": "^3.4.2",
     "offline-plugin": "^3.4.2",
     "phantomjs-prebuilt": "^2.1.15",

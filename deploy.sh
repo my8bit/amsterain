@@ -1,7 +1,5 @@
-DEPLOY_OUTPUT="$(netlify deploy -e stage -t $NETLIFY_TOKEN)"
-echo $DEPLOY_OUTPUT
-URL=$(grep -iIohE 'http?://[^[:space:]]+' <<< $DEPLOY_OUTPUT)
-#URL=${URL/http/https}
+DEPLOY_OUTPUT="$(node_modules/netlify-cli/bin/cli.js deploy -t $NETLIFY_TOKEN -d)"
+URL=$(grep -iIohE 'https://[^[:space:]]+' <<< $DEPLOY_OUTPUT)
+echo "\033[1mSite is deployed:\033[0m"
 echo $URL
-#node node_modules/lighthouse-ci/runlighthouse.js $URL
-node node_modules/lighthouse-ci/runlighthouse.js https://amsterdam-neerslag.nl/
+node node_modules/lighthouse-ci/runlighthouse.js $URL
