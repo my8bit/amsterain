@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "rules": {
+    "no-warning-comments": "off",
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ]
+  },
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true
+  },
+  "extends": [
+    "xo-react/space",
+    "xo-space/esnext"
+  ]
+}
