@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import {colors} from '../../config';
 import {connect} from 'react-redux';
 
@@ -38,8 +40,8 @@ export class ColorPicker extends Component {
 }
 
 ColorPicker.propTypes = {
-  color: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  color: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = store => {

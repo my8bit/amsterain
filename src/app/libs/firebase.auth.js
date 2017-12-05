@@ -24,7 +24,7 @@ const database = firebase.database();
 
 window.writeKey = () => {
   const userId = firebase.auth().currentUser.uid;
-  console.log(userId);
+  console.log(userId); // eslint-disable-line no-console
   database.ref(`users/${userId}`).set({
     foo: 'bar'
   });
@@ -33,7 +33,7 @@ window.writeKey = () => {
 window.readKey = () => {
   const userId = firebase.auth().currentUser.uid;
   return database.ref(`users/${userId}`).once('value').then(snapshot => {
-    console.log(snapshot.val());
+    console.log(snapshot.val()); // eslint-disable-line no-console
   });
 };
 
@@ -78,7 +78,7 @@ export const logoutAction = () => dispatch => {
       type: 'LOGOUT'
     });
   }).catch(error => {
-    console.log(error);
+    console.error(error); // eslint-disable-line no-console
     // An error happened.
   });
 };
@@ -114,7 +114,7 @@ export const saveTime = time => dispatch => {
 export const readTime = () => dispatch => {
   const userId = firebase.auth().currentUser.uid;
   return database.ref(`users/${userId}`).once('value').then(snapshot => {
-    console.log(snapshot.val());
+    console.log(snapshot.val()); // eslint-disable-line no-console
     dispatch({
       type: 'READ-TIME'
     });
@@ -170,14 +170,14 @@ export const loginAction = () => dispatch => {
     const email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     const credential = error.credential;
-    console.log(errorCode, errorMessage, email, credential);
+    console.log(errorCode, errorMessage, email, credential); // eslint-disable-line no-console
   });
 };
 
 export const loadWeerAction = () => dispatch => {
   // simplified=1
   // https://api.apifier.com/v1/bf2sc3BAivRhKYniR/crawlers/buienradar/lastExec/results?token=FNnGvnYTXCkQEc9DH5DHt2bme&simplified=1
-  console.log('url', url);
+  console.log('url', url); // eslint-disable-line no-console
   fetch(url)
   // fetch('https://api.apifier.com/v1/execs/H43ga4uKtWgHu6rbG/results?format=json')
     .then(res => res.json())

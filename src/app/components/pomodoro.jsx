@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import BillboardChart from 'react-billboard.js';
@@ -85,12 +86,12 @@ class TimerWidget extends Component {
 }
 
 TimerWidget.propTypes = {
-  data: React.PropTypes.array,
-  time1: React.PropTypes.array,
-  preceptoin1: React.PropTypes.array,
-  value: React.PropTypes.number.isRequired,
-  time: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  data: PropTypes.array,
+  time1: PropTypes.array,
+  preceptoin1: PropTypes.array,
+  value: PropTypes.number.isRequired,
+  time: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = store => {
