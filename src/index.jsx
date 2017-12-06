@@ -7,6 +7,8 @@ Offline.install();
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
@@ -53,7 +55,7 @@ class Main extends Component {
             {rel: 'icon', type: 'image/png', href: 'static/favicon-128.png', sizes: '128x128'}
           ]}
           meta={[
-            {name: 'description', content: 'Amsterdam neerslag in de komende 2 uur'},
+            {name: 'description', content: 'Amsterdam neerslag komende 2 uur'},
             {name: 'application-name', content: textContent},
             {name: 'apple-mobile-web-app-capable', content: 'yes'},
             {name: 'mobile-web-app-capable', content: 'yes'},
@@ -65,7 +67,7 @@ class Main extends Component {
           ]}
           />
         <SidebarCmp/>
-        <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
+        <input accessKey="t" type="checkbox" id="nav-trigger" className="nav-trigger"/>
         <label htmlFor="nav-trigger">
           <div id="close-icon"><span></span><span></span><span></span></div>
         </label>
@@ -77,16 +79,15 @@ class Main extends Component {
 
 const mapStateToProps = store => {
   const {color} = store.representationReducer;
-  const {time, startTime} = store.timerReducer;
-  return {color, time, startTime};
+  return {color};
 };
 
 Main.propTypes = {
-  startTime: React.PropTypes.number.isRequired,
-  time: React.PropTypes.number.isRequired,
-  color: React.PropTypes.string.isRequired,
-  children: React.PropTypes.element.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  startTime: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const App = connect(mapStateToProps)(Main);

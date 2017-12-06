@@ -68,6 +68,9 @@ module.exports = {
   ],
   postcss: () => [autoprefixer],
   resolve: {
+    packageMains: [
+      'module'
+    ],
     alias: {
       config: path.resolve(__dirname, `../${conf.path.src('config.json')}`)
     }

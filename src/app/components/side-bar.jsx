@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Ink from 'react-ink';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
@@ -37,7 +38,7 @@ class SidebarList extends Component {
 }
 
 SidebarList.propTypes = {
-  dispatch: React.PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = store => {
