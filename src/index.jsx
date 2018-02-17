@@ -8,6 +8,7 @@ Offline.install();
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import './app/workers/notification';
 
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
@@ -18,7 +19,6 @@ import {AboutCmp} from './app/layout/about.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
-import {formatDate, addToInterval, removeFromInterval} from './app/libs/timer';
 import './index.scss';
 
 class Main extends Component {
@@ -27,21 +27,11 @@ class Main extends Component {
     this.update = this.forceUpdate.bind(this);
   }
 
-  componentDidMount() {
-    addToInterval(this.update);
-  }
-
-  componentWillUnmount() {
-    removeFromInterval(this.update);
-  }
-
   render() {
-    const {color, time, startTime, children} = this.props;
-    const currentTime = formatDate(time, startTime);
+    const {color, children} = this.props;
     return (
       <main>
         <Helmet
-          title={startTime ? currentTime : textContent}
           link={[
             {rel: 'apple-touch-icon-precomposed', href: 'static/apple-touch-icon-57x57.png', sizes: '57x57'},
             {rel: 'apple-touch-icon-precomposed', href: 'static/apple-touch-icon-114x114.png', sizes: '114x114'},
@@ -83,8 +73,6 @@ const mapStateToProps = store => {
 };
 
 Main.propTypes = {
-  startTime: PropTypes.number.isRequired,
-  time: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   dispatch: PropTypes.func.isRequired

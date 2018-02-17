@@ -77,7 +77,6 @@
   },
   "scripts": {
     "build": "gulp",
-    "travis": "curl -s -X POST -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Travis-API-Version: 3\" -H \"Authorization: token $TRAVIS_TOKEN\" -d \"$TRAVIS_BODY\" https://api.travis-ci.org/repo/my8bit%2Famsterdam-neerslag/requests",
     "prelint": "eslint --fix src/",
     "lint": "eslint src/",
     "webpack:profile": "webpack --config=conf/webpack.conf.js --profile --json > stats.json",
