@@ -1,7 +1,31 @@
 import {notification} from 'config';
+import {firebase} from '../libs/firebase.auth.js';
 
 const serviceWorker = window.navigator && window.navigator.serviceWorker;
 const registerPromise = serviceWorker && serviceWorker.register('static/notification.worker.js');
+
+registerPromise.then(registration => {
+  const messaging = firebase.messaging();
+  messaging.useServiceWorker(registration);
+  messaging.requestPermission().then(() => {
+    messaging.onMessage(payload => {
+      console.log('[firebase-messaging-sw.js] Received foreground message ', payload);  // eslint-disable-line no-console
+    });
+  });
+  return messaging.getToken();
+})
+.then(token => {
+  fetch('https://us-central1-amsterdam-neerslag.cloudfunctions.net/subscribe', {
+    method: 'POST',
+    mode: 'no-cors',
+    body: JSON.stringify({
+      token
+    }),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  });
+});
 
 if (Notification) {
   Notification.requestPermission();

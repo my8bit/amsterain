@@ -77,6 +77,8 @@ window.readKey = () => {
 //   });
 // };
 
+export {firebase, database};
+
 export const logoutAction = () => dispatch => {
   firebase.auth().signOut().then(() => {
     dispatch({
