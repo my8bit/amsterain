@@ -11,7 +11,7 @@
     "paper-ripple": "^0.2.0",
     "prop-types": "^15.6.0",
     "react": "^15.4.2",
-    "react-billboard.js": "github:my8bit/react-billboard.js",
+    "react-billboard.js": "^0.1.2",
     "react-c3js": "^0.1.19",
     "react-dom": "^15.4.2",
     "react-helmet": "^3.1.0",
