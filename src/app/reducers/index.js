@@ -40,13 +40,19 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
   }
 };
 
-export const loadReducer = (state = {time1: [], preceptoin1: [], data: []}, action) => {
+export const loadReducer = (state = {
+  time1: [], preceptoin1: [], data: [], victoryChartData: []
+}, action) => {
   switch (action.type) {
     case 'LOAD':
       return Object.assign({}, state, {
         data: action.data,
-        time1: ['x'].concat(getRainingTicks(action.data)),
-        preceptoin1: ['time'].concat(action.data.map(item => item.precipitation))
+        victoryChartData: [].concat(action.data.map(el => {
+          return {
+            time: createDateFromTime(el.time),
+            precep: parseInt(el.preceptoin, 10)
+          };
+        })),
       });
     default:
       return state;
@@ -64,4 +70,3 @@ export const tooltipReducer = (state = {value: 0, time: ''}, action) => {
       return state;
   }
 };
-
