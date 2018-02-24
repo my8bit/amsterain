@@ -1,9 +1,3 @@
-const {
-  LIGHTHOUSE_API_KEY, DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF,
-  REPO_OWNER, REPO_NAME
-} = process.env;
-
-console.log(LIGHTHOUSE_API_KEY, DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF, REPO_OWNER, REPO_NAME);// eslint-disable-line no-console
 const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
