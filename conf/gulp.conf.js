@@ -23,8 +23,8 @@ exports.paths = {
 
 exports.path = {};
 for (const pathName in exports.paths) {
-  if (exports.paths.hasOwnProperty(pathName)) {
-    exports.path[pathName] = function pathJoin() {
+  if (Object.prototype.hasOwnProperty.call(exports.paths, pathName)) {
+    exports.path[pathName] = () => {
       const pathValue = exports.paths[pathName];
       const funcArgs = Array.prototype.slice.call(arguments);
       const joinArgs = [pathValue].concat(funcArgs);
@@ -38,7 +38,7 @@ for (const pathName in exports.paths) {
  */
 exports.errorHandler = function (title) {
   return function (err) {
-    console.log(`[${title}]`, err.toString());
+    console.log(`[${title}]`, err.toString()); // eslint-disable-line no-console
     this.emit('end');
   };
 };

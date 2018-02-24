@@ -23,7 +23,7 @@ module.exports = function () {
           quiet: true
         }),
 
-        // bundler should be the same as above
+        // Bundler should be the same as above
         webpackHotMiddleware(webpackBundler)
       ]
     },
