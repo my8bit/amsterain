@@ -31,9 +31,7 @@ exports.handler = (event, context, callback) => {
       }
     }
   }, (err, res) => {
-    console.log(event);
-    console.log(context);
-    console.log(LIGHTHOUSE_API_KEY, DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF, REPO_OWNER, REPO_NAME);// eslint-disable-line no-console
+    console.log(process.env);
     console.log(res.body); // eslint-disable-line no-console
   });
 };
