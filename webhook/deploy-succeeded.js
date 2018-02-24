@@ -30,5 +30,7 @@ exports.handler = (event, context, callback) => {
         sha: COMMIT_REF
       }
     }
+  }, (err, res) => {
+    console.log(res);
   });
 };
