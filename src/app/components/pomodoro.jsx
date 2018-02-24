@@ -73,7 +73,6 @@ class TimerWidget extends Component {
               type: 'timeseries',
               tick: {
                 count: () => {
-                  // TODO
                   const {chartWidth: {offsetWidth = 0}} = this;
                   return Math.round(offsetWidth / 75);
                 },

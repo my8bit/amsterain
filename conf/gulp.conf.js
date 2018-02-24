@@ -22,14 +22,17 @@ exports.paths = {
 };
 
 exports.path = {};
-for (const pathName in exports.paths) {
-  if (Object.prototype.hasOwnProperty.call(exports.paths, pathName)) {
-    exports.path[pathName] = () => {
+const {paths} = exports;
+
+for (const pathName in paths) {
+  if (Object.prototype.hasOwnProperty.call(paths, pathName)) {
+    const pathJoin = function () {
       const pathValue = exports.paths[pathName];
       const funcArgs = Array.prototype.slice.call(arguments);
       const joinArgs = [pathValue].concat(funcArgs);
       return path.join.apply(this, joinArgs);
     };
+    exports.path[pathName] = pathJoin;
   }
 }
 
@@ -38,7 +41,7 @@ for (const pathName in exports.paths) {
  */
 exports.errorHandler = function (title) {
   return function (err) {
-    console.log(`[${title}]`, err.toString()); // eslint-disable-line no-console
+    console.log(`[${title}]`, err.toString()); // eslint-disable no-console
     this.emit('end');
   };
 };

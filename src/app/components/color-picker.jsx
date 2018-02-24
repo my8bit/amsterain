@@ -31,7 +31,7 @@ export class ColorPicker extends Component {
             name="color"
             style={{backgroundColor: currentColor}}
             value={currentColor}
-            />
+          />
         </div>
       );
     });
