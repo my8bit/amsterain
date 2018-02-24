@@ -1,7 +1,7 @@
 const request = require('request');
 const {
   LIGHTHOUSE_API_KEY, DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF,
-  REPO_OWNER,REPO_NAME
+  REPO_OWNER, REPO_NAME
 } = process.env;
 
 exports.handler = (event, context, callback) => {

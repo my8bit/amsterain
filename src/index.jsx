@@ -65,7 +65,7 @@ class Main extends Component {
             {name: 'msapplication-navbutton-color', content: color},
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
-          />
+        />
         <SidebarCmp/>
         <input accessKey="t" type="checkbox" id="nav-trigger" className="nav-trigger"/>
         <label htmlFor="nav-trigger">

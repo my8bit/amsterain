@@ -5,8 +5,6 @@ const registerPromise = serviceWorker && serviceWorker.register('static/notifica
 
 if (Notification) {
   Notification.requestPermission();
-} else {
-  console.error('Desktop notifications not available in your browser.');
 }
 
 export const notifyMe = () => {
@@ -20,7 +18,8 @@ export const notifyMe = () => {
     } else {
       const browserNotification = new Notification(title, options);
       browserNotification.addEventListener('click', () => {
-        console.log('this is actually clicked');
+        // TODO add logic here
+        console.log('this is actually clicked'); // eslint-disable-line no-console
       });
     }
   }
@@ -29,7 +28,7 @@ export const notifyMe = () => {
 function serviceWorkerRequest(wrkr, message) {
   if ('serviceWorker' in navigator) {
     if (!wrkr) {
-      return Promise.reject('No service worker controller.');
+      return Promise.reject(new Error('No service worker controller.'));
     }
     return new Promise((resolve, reject) => {
       const messageChannel = new MessageChannel();

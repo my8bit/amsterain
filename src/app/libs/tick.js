@@ -21,7 +21,7 @@ export const getRainingTicks = data => {
 };
 
 /*
-const ticks = data
+Const ticks = data
   .filter((el, idx, arr) => {
     const prev = parseInt(arr[idx - 1] && arr[idx - 1].preceptoin, 10);
     const next = parseInt(arr[idx + 1] && arr[idx + 1].preceptoin, 10);
