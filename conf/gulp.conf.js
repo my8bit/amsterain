@@ -9,7 +9,6 @@
  */
 
 const path = require('path');
-const gutil = require('gulp-util');
 
 /**
  *  The main paths of your project handle these with care
@@ -39,7 +38,7 @@ for (const pathName in exports.paths) {
  */
 exports.errorHandler = function (title) {
   return function (err) {
-    gutil.log(gutil.colors.red(`[${title}]`), err.toString());
+    console.log(`[${title}]`, err.toString());
     this.emit('end');
   };
 };
