@@ -41,7 +41,7 @@ for (const pathName in paths) {
  */
 exports.errorHandler = function (title) {
   return function (err) {
-    console.log(`[${title}]`, err.toString()); // eslint-disable no-console
+    console.log(`[${title}]`, err.toString()); // eslint-disable-line no-console
     this.emit('end');
   };
 };
