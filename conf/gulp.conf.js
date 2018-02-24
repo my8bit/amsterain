@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  *  This file contains the variables used in other gulp files
  *  which defines tasks
@@ -13,7 +11,7 @@ const path = require('path');
 /**
  *  The main paths of your project handle these with care
  */
-exports.paths = {
+const paths = {
   src: 'src',
   dist: 'dist',
   tmp: '.tmp',
@@ -21,14 +19,13 @@ exports.paths = {
   tasks: 'gulp_tasks'
 };
 
+exports.paths = paths;
 exports.path = {};
-const {paths} = exports;
 
 for (const pathName in paths) {
   if (Object.prototype.hasOwnProperty.call(paths, pathName)) {
-    const pathJoin = function () {
+    const pathJoin = function (...funcArgs) {
       const pathValue = exports.paths[pathName];
-      const funcArgs = Array.prototype.slice.call(arguments);
       const joinArgs = [pathValue].concat(funcArgs);
       return path.join.apply(this, joinArgs);
     };
