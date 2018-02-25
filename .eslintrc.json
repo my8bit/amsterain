@@ -20,11 +20,6 @@
         "react"
     ],
     "rules": {
-        "capitalized-comments": [
-          "error",
-          "never",
-          {"ignoreInlineComments": true}
-        ],
         "no-warning-comments": "off",
         "comma-dangle": [
           "error",
