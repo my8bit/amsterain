@@ -1,9 +1,10 @@
 const request = require('request');
 const {
-  LIGHTHOUSE_API_KEY, DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF,
+  LIGHTHOUSE_API_KEY,
   REPO_OWNER, REPO_NAME
 } = process.env;
-
+const {DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF} = global;
+console.log(LIGHTHOUSE_API_KEY, DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF, REPO_OWNER, REPO_NAME);
 exports.handler = (event, context, callback) => {
   callback(null, {
     statusCode: 200,
@@ -31,7 +32,7 @@ exports.handler = (event, context, callback) => {
       }
     }
   }, (err, res) => {
-    console.log(process.env);
+    console.log(LIGHTHOUSE_API_KEY, DEPLOY_PRIME_URL, REVIEW_ID, COMMIT_REF, REPO_OWNER, REPO_NAME);
     console.log(res.body); // eslint-disable-line no-console
   });
 };
