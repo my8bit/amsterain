@@ -70,7 +70,7 @@
     "function:serve": "netlify-lambda serve webhook",
     "function:build:webpack": "netlify-lambda build --config conf/webpack-functions.conf.js webhook",
     "function:build": "netlify-lambda build webhook",
-    "prebuild": "npm run function:build",
+    "prebuild": "npm run function:build:webpack",
     "build": "gulp",
     "travis": "curl -s -X POST -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Travis-API-Version: 3\" -H \"Authorization: token $TRAVIS_TOKEN\" -d \"$TRAVIS_BODY\" https://api.travis-ci.org/repo/my8bit%2Famsterdam-neerslag/requests",
     "prelint": "eslint --fix src/",
