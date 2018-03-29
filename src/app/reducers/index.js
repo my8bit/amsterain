@@ -40,7 +40,9 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
   }
 };
 
-export const loadReducer = (state = {time1: [], preceptoin1: [], data: []}, action) => {
+export const loadReducer = (state = {
+  time1: [], preceptoin1: [], data: [], victoryChartData: []
+}, action) => {
   switch (action.type) {
     case 'LOAD':
       return Object.assign({}, state, {
@@ -53,6 +55,12 @@ export const loadReducer = (state = {time1: [], preceptoin1: [], data: []}, acti
             }
           }
           return time;
+        })),
+        victoryChartData: [].concat(action.data.map(el => {
+          return {
+            time: createDateFromTime(el.time),
+            precep: parseInt(el.preceptoin, 10)
+          };
         })),
         preceptoin1: ['time'].concat(action.data.map(item => item.preceptoin))
       });
