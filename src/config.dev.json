@@ -1,5 +1,5 @@
 {
-  "url": "mocks/data.json",
+  "url": "mocks/data.short.json",
   "timerOptions": {
     "time": 150000,
     "breakTime": 2500,
