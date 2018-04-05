@@ -6,7 +6,6 @@
           FIREBASE_MESSEGING_SENDER_ID
 */
 import firebase from 'firebase';
-import {url} from 'config';
 
 const firebaseOptions = {
   apiKey: FIREBASE_API_KEY,
@@ -181,16 +180,11 @@ export const loginAction = () => dispatch => {
 };
 
 export const loadWeerAction = () => dispatch => {
-  // simplified=1
-  // https://api.apifier.com/v1/bf2sc3BAivRhKYniR/crawlers/buienradar/lastExec/results?token=FNnGvnYTXCkQEc9DH5DHt2bme&simplified=1
-  console.log('url', url); // eslint-disable-line no-console
-  fetch(url)
-  // fetch('https://api.apifier.com/v1/execs/H43ga4uKtWgHu6rbG/results?format=json')
-    .then(res => res.json())
-    .then(data => {
-      dispatch({
-        type: 'LOAD',
-        data: data[0].pageFunctionResult.data
-      });
+  database.ref('weather').on('value', snapshot => {
+    const {data} = snapshot.val();
+    dispatch({
+      type: 'LOAD',
+      data
     });
+  });
 };
