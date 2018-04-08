@@ -19,6 +19,12 @@ const firebaseOptions = {
 
 firebase.initializeApp(firebaseOptions);
 
+const messaging = firebase.messaging();
+messaging.requestPermission();
+messaging.onMessage(payload => {
+  console.log('Message received. ', payload); // eslint-disable-line no-console
+});
+
 const provider = new firebase.auth.TwitterAuthProvider();
 const database = firebase.database();
 
