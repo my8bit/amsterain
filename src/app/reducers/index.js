@@ -1,5 +1,5 @@
 import {colors} from 'config';
-import {createDateFromTime} from '../libs/tick.js';
+import {getRainingTicks} from '../libs/tick.js';
 
 const savedColor = colors[1];
 
@@ -45,16 +45,8 @@ export const loadReducer = (state = {time1: [], preceptoin1: [], data: []}, acti
     case 'LOAD':
       return Object.assign({}, state, {
         data: action.data,
-        time1: ['x'].concat(action.data.map((item, idx, arr) => {
-          const time = createDateFromTime(item.time);
-          if (idx < arr.length - 1) {
-            if (parseInt(item.time.split(':')[0], 10) === 1) {
-              time.setDate(time.getDate() + 1);
-            }
-          }
-          return time;
-        })),
-        preceptoin1: ['time'].concat(action.data.map(item => item.preceptoin))
+        time1: ['x'].concat(getRainingTicks(action.data)),
+        preceptoin1: ['time'].concat(action.data.map(item => item.precipitation))
       });
     default:
       return state;

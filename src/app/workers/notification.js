@@ -5,6 +5,8 @@ const registerPromise = serviceWorker && serviceWorker.register('static/notifica
 
 if (Notification) {
   Notification.requestPermission();
+} else {
+  console.error('Desktop notifications not available in your browser.'); // eslint-disable-line no-console
 }
 
 export const notifyMe = () => {
@@ -18,7 +20,6 @@ export const notifyMe = () => {
     } else {
       const browserNotification = new Notification(title, options);
       browserNotification.addEventListener('click', () => {
-        // TODO add logic here
         console.log('this is actually clicked'); // eslint-disable-line no-console
       });
     }
