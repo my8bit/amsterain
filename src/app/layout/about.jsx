@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import {ColorPickerCmp} from '../components/color-picker.jsx';
 
 export class AboutCmp extends Component {
   render() {

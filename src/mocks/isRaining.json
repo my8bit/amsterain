@@ -1,0 +1,69 @@
+[{
+  "data": [{
+    "time": "23:45",
+    "precipitation": "0"
+  }, {
+    "time": "23:50",
+    "precipitation": "0"
+  }, {
+    "time": "23:55",
+    "precipitation": "50"
+  }, {
+    "time": "00:00",
+    "precipitation": "100"
+  }, {
+    "time": "00:05",
+    "precipitation": "50"
+  }]
+}, {
+  "data": [{
+    "time": "23:45",
+    "precipitation": "0"
+  }, {
+    "time": "23:50",
+    "precipitation": "50"
+  }, {
+    "time": "23:55",
+    "precipitation": "100"
+  }, {
+    "time": "00:00",
+    "precipitation": "50"
+  }, {
+    "time": "00:05",
+    "precipitation": "0"
+  }]
+}, {
+  "data": [{
+    "time": "23:45",
+    "precipitation": "50"
+  }, {
+    "time": "23:50",
+    "precipitation": "100"
+  }, {
+    "time": "23:55",
+    "precipitation": "50"
+  }, {
+    "time": "00:00",
+    "precipitation": "0"
+  }, {
+    "time": "00:05",
+    "precipitation": "0"
+  }]
+}, {
+  "data": [{
+    "time": "23:45",
+    "precipitation": "100"
+  }, {
+    "time": "23:50",
+    "precipitation": "50"
+  }, {
+    "time": "23:55",
+    "precipitation": "0"
+  }, {
+    "time": "00:00",
+    "precipitation": "0"
+  }, {
+    "time": "00:05",
+    "precipitation": "100"
+  }]
+}]

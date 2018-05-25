@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Ink from 'react-ink';
-import {Link} from 'react-router';
+import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {checkAuth, logoutAction, loginAction} from '../libs/firebase.auth';
 
@@ -30,8 +30,8 @@ class SidebarList extends Component {
   render() {
     return (
       <ul className="navigation">
-        <li className="nav-item"><Link to="/">Neerslag<i className="fa fa-tint right" aria-hidden="true"></i><Ink/></Link></li>
-        <li className="nav-item"><Link to="/settings">Informatie<i className="fa fa-info right" aria-hidden="true"></i><Ink/></Link></li>
+        <li className="nav-item"><NavLink to="/">Precipitation<i className="fa fa-tint right" aria-hidden="true"></i><Ink/></NavLink></li>
+        <li className="nav-item"><NavLink to="/about">About<i className="fa fa-info right" aria-hidden="true"></i><Ink/></NavLink></li>
       </ul>
     );
   }

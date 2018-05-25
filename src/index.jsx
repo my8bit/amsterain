@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import Offline from 'offline-plugin/runtime';
 Offline.install();
 
@@ -11,8 +12,8 @@ import PropTypes from 'prop-types';
 
 import {Provider, connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-
+// Use HashRouter for Electron
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
@@ -27,7 +28,7 @@ class Main extends Component {
   }
 
   render() {
-    const {color, children} = this.props;
+    const {color} = this.props;
     return (
       <main>
         <Helmet
@@ -55,12 +56,17 @@ class Main extends Component {
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
           />
-        <SidebarCmp/>
-        <input accessKey="t" type="checkbox" id="nav-trigger" className="nav-trigger"/>
-        <label htmlFor="nav-trigger">
-          <div id="close-icon"><span></span><span></span><span></span></div>
-        </label>
-        {children}
+        <Router>
+          <div>
+            <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
+            <label htmlFor="nav-trigger">
+              <div id="close-icon"><span></span><span></span><span></span></div>
+            </label>
+            <Route path="/" component={SidebarCmp}/>
+            <Route exact path="/" component={HomeCmp}/>
+            <Route exact path="/about" component={AboutCmp}/>
+          </div>
+        </Router>
       </main>
     );
   }
@@ -73,7 +79,6 @@ const mapStateToProps = store => {
 
 Main.propTypes = {
   color: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
@@ -81,14 +86,9 @@ const App = connect(mapStateToProps)(Main);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <section>
-        <Route path="/" component={App}>
-          <IndexRoute component={HomeCmp}/>
-          <Route path="/settings" component={AboutCmp}/>
-        </Route>
-      </section>
-    </Router>
+    <section>
+      <App/>
+    </section>
   </Provider>,
   document.getElementById('app')
 );
