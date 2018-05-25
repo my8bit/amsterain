@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@liveauctioneers/react-window-resize-listener": "github:LIVEauctioneers/react-window-resize-listener",
     "authlify-js": "^0.5.2",
     "c3": "^0.4.17",
     "firebase": "^3.9.0",
@@ -11,9 +12,10 @@
     "paper-ripple": "^0.2.0",
     "prop-types": "^15.6.0",
     "react": "^15.4.2",
+    "react-router-dom": "^4.2.2",
+    "react-dom": "^15.4.2",
     "react-billboard.js": "github:my8bit/react-billboard.js",
     "react-c3js": "^0.1.19",
-    "react-dom": "^15.4.2",
     "react-helmet": "^3.1.0",
     "react-ink": "^5.1.1",
     "react-redux": "^5.0.6",

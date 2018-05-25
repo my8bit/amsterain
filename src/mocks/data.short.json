@@ -1,0 +1,39 @@
+[{
+  "pageFunctionResult": {
+    "data": [{
+        "time": "23:15",
+        "precipitation": "0"
+      }, {
+        "time": "23:30",
+        "precipitation": "0"
+      }, {
+        "time": "23:45",
+        "precipitation": "100"
+      }, {
+        "time": "00:00",
+        "precipitation": "50"
+      }, {
+        "time": "00:15",
+        "precipitation": "0"
+      }, {
+        "time": "00:30",
+        "precipitation": "0"
+      }, {
+        "time": "00:45",
+        "precipitation": "100"
+      },{
+        "time": "01:00",
+        "precipitation": "0"
+      }, {
+        "time": "01:15",
+        "precipitation": "100"
+      }, {
+        "time": "01:30",
+        "precipitation": "150"
+      }, {
+        "time": "01:45",
+        "precipitation": "0"
+      }
+    ]
+  }
+}]
