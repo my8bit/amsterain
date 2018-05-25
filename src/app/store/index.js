@@ -13,7 +13,7 @@ const composeEnhancers =
   typeof window === 'object' &&
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      // extension’s options
+      // Extension’s options
     }) : compose;
 
 const enhancer = composeEnhancers(

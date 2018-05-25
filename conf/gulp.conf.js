@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  *  This file contains the variables used in other gulp files
  *  which defines tasks
@@ -9,12 +7,11 @@
  */
 
 const path = require('path');
-const gutil = require('gulp-util');
 
 /**
  *  The main paths of your project handle these with care
  */
-exports.paths = {
+const paths = {
   src: 'src',
   dist: 'dist',
   tmp: '.tmp',
@@ -22,15 +19,17 @@ exports.paths = {
   tasks: 'gulp_tasks'
 };
 
+exports.paths = paths;
 exports.path = {};
-for (const pathName in exports.paths) {
-  if (exports.paths.hasOwnProperty(pathName)) {
-    exports.path[pathName] = function pathJoin() {
+
+for (const pathName in paths) {
+  if (Object.prototype.hasOwnProperty.call(paths, pathName)) {
+    const pathJoin = function (...funcArgs) {
       const pathValue = exports.paths[pathName];
-      const funcArgs = Array.prototype.slice.call(arguments);
       const joinArgs = [pathValue].concat(funcArgs);
       return path.join.apply(this, joinArgs);
     };
+    exports.path[pathName] = pathJoin;
   }
 }
 
@@ -39,7 +38,7 @@ for (const pathName in exports.paths) {
  */
 exports.errorHandler = function (title) {
   return function (err) {
-    gutil.log(gutil.colors.red(`[${title}]`), err.toString());
+    console.log(`[${title}]`, err.toString()); // eslint-disable-line no-console
     this.emit('end');
   };
 };

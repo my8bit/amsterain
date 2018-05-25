@@ -43,7 +43,7 @@ window.readKey = () => {
   });
 };
 
-// function writeUserData(userId, photoURL) {
+// Function writeUserData(userId, photoURL) {
 //   firebase.database().ref(`users/${userId}`).set({
 //     photo: photoURL
 //   });
@@ -93,7 +93,7 @@ export const timerAction = time => dispatch => {
   const type = time ? 'RESET' : 'START';
   const startTime = time ? 0 : (new Date()).getTime();
 
-  // localStorage.setItem('startTime', startTime);
+  // LocalStorage.setItem('startTime', startTime);
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       database.ref(`users/${user.uid}`).set({
@@ -153,7 +153,7 @@ export const loginAction = () => dispatch => {
     // const secret = result.credential.secret;
     // The signed-in user info.
     const user = result.user;
-    // console.log(token, secret, user);
+    // Console.log(token, secret, user);
     // console.log(user.photoURL);
     dispatch({
       type: 'LOGIN',
@@ -181,7 +181,7 @@ export const loginAction = () => dispatch => {
 };
 
 export const loadWeerAction = () => dispatch => {
-  // simplified=1
+  // Simplified=1
   // https://api.apifier.com/v1/bf2sc3BAivRhKYniR/crawlers/buienradar/lastExec/results?token=FNnGvnYTXCkQEc9DH5DHt2bme&simplified=1
   console.log('url', url); // eslint-disable-line no-console
   fetch(url)

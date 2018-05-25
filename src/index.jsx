@@ -1,10 +1,4 @@
 import Offline from 'offline-plugin/runtime';
-Offline.install();
-
-// TODO: https://codelabs.developers.google.com/codelabs/add-to-home-screen/#5
-// TODO: https://developer.chrome.com/multidevice/android/installtohomescreen
-// TODO: https://mobiforge.com/design-development/taking-web-offline-service-workers
-
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -19,6 +13,8 @@ import {SidebarCmp} from './app/components/side-bar.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
 import './index.scss';
+
+Offline.install();
 
 class Main extends Component {
   constructor(props) {
@@ -54,7 +50,7 @@ class Main extends Component {
             {name: 'msapplication-navbutton-color', content: color},
             {name: 'apple-mobile-web-app-status-bar-style', content: color}
           ]}
-          />
+        />
         <SidebarCmp/>
         <input accessKey="t" type="checkbox" id="nav-trigger" className="nav-trigger"/>
         <label htmlFor="nav-trigger">

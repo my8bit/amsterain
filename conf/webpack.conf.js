@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: "ts-loader"
+        loader: 'ts-loader'
       },
       {
         test: /\.(css|scss|sass)$/,
@@ -52,7 +52,7 @@ module.exports = {
         exclude: /node_modules/,
         loaders: [
           'react-hot',
-          'babel-loader?presets[]=react,presets[]=es2015'
+          'babel-loader?presets[]=react,presets[]=env'
         ]
       }
     ]

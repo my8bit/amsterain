@@ -29,7 +29,7 @@ export const notifyMe = () => {
 function serviceWorkerRequest(wrkr, message) {
   if ('serviceWorker' in navigator) {
     if (!wrkr) {
-      return Promise.reject('No service worker controller.');
+      return Promise.reject(new Error('No service worker controller.'));
     }
     return new Promise((resolve, reject) => {
       const messageChannel = new MessageChannel();

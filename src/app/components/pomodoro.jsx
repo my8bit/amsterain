@@ -8,10 +8,12 @@ class TimerWidget extends Component {
   shouldComponentUpdate(nextProps) {
     return !_.isEqual(nextProps.time1, this.props.time1);
   }
+
   componentWillMount() {
     const {dispatch} = this.props;
     dispatch(loadWeerAction());
   }
+
   render() {
     const {preceptoin1, time1, dispatch} = this.props;
     const ch = ch => {
@@ -20,7 +22,7 @@ class TimerWidget extends Component {
     return (
       <div
         className="container"
-        >
+      >
         <BillboardChart
           className="chart"
           id="chart"
@@ -71,17 +73,16 @@ class TimerWidget extends Component {
               type: 'timeseries',
               tick: {
                 count: () => {
-                  // TODO
-                  const width = this.chartWidth && this.chartWidth.offsetWidth || 0;
-                  return Math.round(width / 75);
+                  const {chartWidth: {offsetWidth = 0}} = this;
+                  return Math.round(offsetWidth / 75);
                 },
                 format: '%H:%M'
               }
             }
           }}
-          />
+        />
       </div>
-   );
+    );
   }
 }
 

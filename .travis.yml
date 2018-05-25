@@ -8,6 +8,4 @@ before_install:
 install:
   - npm install
 script:
-  - npm run build
-after_success:
-  - ./deploy.sh
+  - npm test
