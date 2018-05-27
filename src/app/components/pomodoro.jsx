@@ -1,67 +1,96 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import _ from 'lodash';
 import {loadWeerAction} from '../libs/firebase.auth';
-import {VictoryLine, VictoryChart, VictoryTheme, VictoryCursorContainer} from 'victory';
+import {VictoryLabel, VictoryArea, VictoryAxis, VictoryChart, VictoryTheme} from 'victory';
+
+// TODO: add theme
+
 class TimerWidget extends Component {
-  shouldComponentUpdate(nextProps) {
-    return !_.isEqual(nextProps.time1, this.props.time1);
-  }
-  componentWillMount() {
+  componentDidMount() {
     const {dispatch} = this.props;
     dispatch(loadWeerAction());
   }
   render() {
-    const {victoryChartData, dispatch} = this.props;
+    const {victoryChartData} = this.props;
     return (
       <div
         className="container"
         >
         <VictoryChart
           theme={VictoryTheme.material}
-          scale={{x: 'time'}}
-          tickFormat={time => {
-            console.log(time); // eslint-disable-line no-console
-            return time;
-          }}
-          style={{
-            data: {
-              fill: 'red',
-              stroke: 'lightskyblue'
-            }
-          }}
-          containerComponent={
-            <VictoryCursorContainer
-              cursorDimension="x"
-              onCursorChange={value => {
-                const min = value.getMinutes() < 10 ? `0${value.getMinutes()}` : value.getMinutes();
-                const time = `${value.getHours()}:${min}`;
-                // const value = value.value;
-                dispatch({
-                  type: 'CHANGE_TIP',
-                  value: 0,
-                  time
-                });
-                console.log(value); // eslint-disable-line no-console
-              }}
-              style={{
-                data: {
-                  fill: 'red',
-                  stroke: 'lightskyblue'
-                }
-              }}
-            />
-          }
+          domain={{y: [0, 60]}}
+          scale={{x: 'time', y: 'linear'}}
           >
-          <VictoryLine
+          <VictoryLabel
+            text={"Heavy"}
+            x={266}
+            y={82}
+            style={{
+              fill: 'white' // TODO theme
+            }}
+          />
+          <VictoryLabel
+            text={"Moderate"}
+            x={245}
+            y={248}
+            style={{
+              fill: 'white' // TODO theme
+            }}
+          />
+          <VictoryLabel
+            text={"Slight"}
+            x={270}
+            y={282}
+            style={{
+              fill: 'white' // TODO theme
+            }}
+          />
+          <VictoryAxis dependentAxis
+            tickValues={[2, 10, 50]}
+            style={{
+              axis: {
+                fill: 'transparent', // TODO theme
+                stroke: 'transparent' // TODO theme
+              },
+              label: {
+                fill: 'white' // TODO theme
+              },
+              ticks: {
+                strokeWidth: 0
+              },
+              tickLabels: {
+                fill: 'transparent' // TODO theme
+              },
+              grid: {
+                fill: 'white',
+                strokeWidth: 2
+              }
+            }}
+          />
+          <VictoryAxis
+            tickFormat={time => time.toLocaleTimeString([], {
+              hour12: false,
+              hour: '2-digit',
+              minute: '2-digit'
+            })}
+            style={{
+              tickLabels: {
+                fill: 'white' // TODO theme
+              },
+              grid: {
+                strokeWidth: 0
+              }
+            }}
+            />
+          <VictoryArea
             theme={VictoryTheme.material}
             style={{
               data: {
-                stroke: 'lightskyblue'
+                fill: 'lightskyblue'
               }
             }}
-            interpolation ="bundle"
+            interpolation="monotoneX"
             animate={true}
             data={victoryChartData}
             x="time"
@@ -73,10 +102,45 @@ class TimerWidget extends Component {
   }
 }
 
+/*
+TODO Component for VictoryChart
+
+containerComponent={
+  <VictoryCursorContainer
+    cursorLabel={data => {
+      return data.x.toLocaleTimeString([], {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }}
+    onCursorChange={value => {
+       // console.log(value); // eslint-disable-line no-console
+      return value;
+      // const min = value.getMinutes() < 10 ? `0${value.getMinutes()}` : value.getMinutes();
+      // const time = `${value.getHours()}:${min}`;
+      // dispatch({
+      //   type: 'CHANGE_TIP',
+      //   value: 0,
+      //   time
+      // });
+    }}
+    cursorDimension="x"
+    style={{
+      tickLabels: {
+        fill: 'white' // TODO theme
+      },
+      data: {
+        strokeWidth: 2,
+        stroke: 'white',
+        fill: 'white'
+      }
+    }}
+  />
+}
+ */
+
 TimerWidget.propTypes = {
-  data: PropTypes.array,
-  time1: PropTypes.array,
-  preceptoin1: PropTypes.array,
   value: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
@@ -85,8 +149,8 @@ TimerWidget.propTypes = {
 
 const mapStateToProps = store => {
   const {value, time} = store.tooltipReducer;
-  const {data, time1, preceptoin1, victoryChartData} = store.loadReducer;
-  return {data, value, time, time1, preceptoin1, victoryChartData};
+  const {victoryChartData} = store.loadReducer;
+  return {value, time, victoryChartData};
 };
 
 export const Timer = connect(mapStateToProps)(TimerWidget);

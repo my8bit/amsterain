@@ -1,32 +1,8 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import Ink from 'react-ink';
 import {NavLink} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {checkAuth, logoutAction, loginAction} from '../libs/firebase.auth';
 
-class SidebarList extends Component {
-  constructor() {
-    super();
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  componentWillMount() {
-    const {dispatch} = this.props;
-    dispatch(checkAuth());
-  }
-
-  handleLogin() {
-    const {dispatch} = this.props;
-    dispatch(loginAction());
-  }
-
-  handleLogout() {
-    const {dispatch} = this.props;
-    dispatch(logoutAction());
-  }
-
+export class SidebarCmp extends Component {
   render() {
     return (
       <ul className="navigation">
@@ -36,13 +12,3 @@ class SidebarList extends Component {
     );
   }
 }
-
-SidebarList.propTypes = {
-  dispatch: PropTypes.func.isRequired
-};
-
-const mapStateToProps = store => {
-  return store;
-};
-
-export const SidebarCmp = connect(mapStateToProps)(SidebarList);
