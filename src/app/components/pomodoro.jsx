@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {loadWeerAction} from '../libs/firebase.auth';
-import {VictoryLabel, VictoryArea, VictoryAxis, VictoryChart, VictoryTheme} from 'victory';
-
+import {VictoryVoronoiContainer, Line, VictoryCursorContainer, VictoryLabel, VictoryArea, VictoryAxis, VictoryChart, VictoryTheme} from 'victory';
+console.log(Line, VictoryCursorContainer, VictoryVoronoiContainer);  // eslint-disable-line no-console
 // TODO: add theme
 
 class TimerWidget extends Component {
@@ -20,7 +20,60 @@ class TimerWidget extends Component {
         <VictoryChart
           theme={VictoryTheme.material}
           domain={{y: [0, 60]}}
-          scale={{x: 'time', y: 'linear'}}
+          scale={{x: 'time'}}
+          containerComponent={
+            <VictoryCursorContainer
+              cursorLabel={data => {
+                return `${data.x.toLocaleTimeString([], {
+                  hour12: false,
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}\n0.3mm/h`;
+              }}
+              onCursorChange={() => {
+                // console.log(value); // eslint-disable-line no-console
+                // return `${value}\n0.3mm/h`;
+                // const min = value.getMinutes() < 10 ? `0${value.getMinutes()}` : value.getMinutes();
+                // const time = `${value.getHours()}:${min}`;
+                // dispatch({
+                //   type: 'CHANGE_TIP',
+                //   value: 0,
+                //   time
+                // });
+              }}
+              cursorLabelComponent={
+                <VictoryLabel
+                  style={{
+                    fill: 'white' // TODO theme
+                  }}
+                />
+              }
+              cursorComponent={
+                <Line
+                  style={{
+                    stroke: 'white',
+                    strokeWidth: 2,
+                    tickLabels: {
+                      stroke: 'white',
+                      fill: 'white' // TODO theme
+                    }
+                  }}
+                />
+              }
+              cursorDimension="x"
+              style={{
+                label: {
+                  stroke: 'white',
+                  fill: 'white' // TODO theme
+                },
+                data: {
+                  strokeWidth: 1,
+                  stroke: 'white',
+                  fill: 'white'
+                }
+              }}
+            />
+          }
           >
           <VictoryLabel
             text={"Heavy"}
@@ -105,39 +158,69 @@ class TimerWidget extends Component {
 /*
 TODO Component for VictoryChart
 
-containerComponent={
-  <VictoryCursorContainer
-    cursorLabel={data => {
-      return data.x.toLocaleTimeString([], {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-    }}
-    onCursorChange={value => {
-       // console.log(value); // eslint-disable-line no-console
-      return value;
-      // const min = value.getMinutes() < 10 ? `0${value.getMinutes()}` : value.getMinutes();
-      // const time = `${value.getHours()}:${min}`;
-      // dispatch({
-      //   type: 'CHANGE_TIP',
-      //   value: 0,
-      //   time
-      // });
-    }}
-    cursorDimension="x"
-    style={{
-      tickLabels: {
-        fill: 'white' // TODO theme
-      },
-      data: {
-        strokeWidth: 2,
-        stroke: 'white',
-        fill: 'white'
-      }
-    }}
-  />
-}
+            <VictoryVoronoiContainer
+              labelComponent={
+                <VictoryLabel
+                  style={{
+                    fill: 'white' // TODO theme
+                  }}
+                />
+              }
+              voronoiDimension="y"
+              labels={d => `${d.precep} lll}`}
+           />
+
+<VictoryCursorContainer
+              cursorLabel={data => {
+                return `${data.x.toLocaleTimeString([], {
+                  hour12: false,
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}\n0.3mm/h`;
+              }}
+              onCursorChange={() => {
+                // console.log(value); // eslint-disable-line no-console
+                // return `${value}\n0.3mm/h`;
+                // const min = value.getMinutes() < 10 ? `0${value.getMinutes()}` : value.getMinutes();
+                // const time = `${value.getHours()}:${min}`;
+                // dispatch({
+                //   type: 'CHANGE_TIP',
+                //   value: 0,
+                //   time
+                // });
+              }}
+              cursorLabelComponent={
+                <VictoryLabel
+                  style={{
+                    fill: 'white' // TODO theme
+                  }}
+                />
+              }
+              cursorComponent={
+                <Line
+                  style={{
+                    stroke: 'white',
+                    strokeWidth: 2,
+                    tickLabels: {
+                      stroke: 'white',
+                      fill: 'white' // TODO theme
+                    }
+                  }}
+                />
+              }
+              cursorDimension="x"
+              style={{
+                label: {
+                  stroke: 'white',
+                  fill: 'white' // TODO theme
+                },
+                data: {
+                  strokeWidth: 1,
+                  stroke: 'white',
+                  fill: 'white'
+                }
+              }}
+            />
  */
 
 TimerWidget.propTypes = {
