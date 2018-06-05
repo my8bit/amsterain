@@ -16,11 +16,12 @@ const getDatesStrings = () => {
 };
 
 describe('getRainingTicks', () => {
+  const substringTime = data => data.time.toString().substring(0, 24);
   test('getRainingTicks for short data', () => {
     const {todayDateString, tomorrowDateString} = getDatesStrings();
     expect(
       getRainingTicks(dataShort)
-        .map(data => data.time.toString().substring(0, 24))
+        .map(substringTime)
     ).toEqual([
       `${todayDateString} 23:15:00`,
       `${todayDateString} 23:30:00`,
@@ -40,7 +41,7 @@ describe('getRainingTicks', () => {
     const {todayDateString, tomorrowDateString} = getDatesStrings();
     expect(
       getRainingTicks(data)
-        .map(data => data.time.toString().substring(0, 24))
+        .map(substringTime)
     ).toEqual([
       `${todayDateString} 23:05:00`,
       `${todayDateString} 23:10:00`,
