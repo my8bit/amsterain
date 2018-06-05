@@ -1,9 +1,8 @@
-import {representationReducer, userReducer, tooltipReducer, loadReducer} from '../reducers';
+import {userReducer, tooltipReducer, loadReducer} from '../reducers';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 
 const reducers = combineReducers({
-  representationReducer,
   loadReducer,
   tooltipReducer,
   userReducer

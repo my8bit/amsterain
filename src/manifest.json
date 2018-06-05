@@ -29,6 +29,6 @@
   "gcm_sender_id": "103953800507",
   "background_color": "#333131",
   "start_url": "/",
-  "display": "fullscreen",
+  "display": "minimal-ui",
   "orientation": "any"
 }

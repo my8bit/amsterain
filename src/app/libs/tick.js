@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 export const createDateFromTime = (time, tomorrow) => {
   const currentDate = new Date();
   const [hour, min] = time
@@ -49,5 +47,12 @@ export const getRainingTicks = data => {
       }
       return el;
     })
-    .map(el => createDateFromTime(el.time, el.midnight));
+    .map(el => {
+      const {time, precipitation, midnight = false} = el;
+      const precep = Math.pow(10, ((parseInt(precipitation, 10) - 109) / 32));
+      return {
+        precep,
+        time: createDateFromTime(time, midnight)
+      };
+    });
 };

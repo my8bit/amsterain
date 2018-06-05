@@ -8,9 +8,9 @@ Offline.install();
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-import {Provider, connect} from 'react-redux';
+import {Provider} from 'react-redux';
 import Helmet from 'react-helmet';
 // Use HashRouter for Electron
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -28,7 +28,6 @@ class Main extends Component {
   }
 
   render() {
-    const {color} = this.props;
     return (
       <main>
         <Helmet
@@ -50,10 +49,10 @@ class Main extends Component {
             {name: 'apple-mobile-web-app-capable', content: 'yes'},
             {name: 'mobile-web-app-capable', content: 'yes'},
             {name: 'msapplication-square70x70logo', content: 'static/mstile-70x70.png'},
-            {name: 'msapplication-TileColor', content: color},
-            {name: 'theme-color', content: color},
-            {name: 'msapplication-navbutton-color', content: color},
-            {name: 'apple-mobile-web-app-status-bar-style', content: color}
+            {name: 'msapplication-TileColor', content: '#333133'},
+            {name: 'theme-color', content: '#333133'},
+            {name: 'msapplication-navbutton-color', content: '#333133'},
+            {name: 'apple-mobile-web-app-status-bar-style', content: '#333133'}
           ]}
           />
         <Router>
@@ -72,22 +71,21 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = store => {
-  const {color} = store.representationReducer;
-  return {color};
-};
+// const mapStateToProps = store => {
+//   const {color} = store.representationReducer;
+//   return {color};
+// };
 
-Main.propTypes = {
-  color: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
-};
+// Main.propTypes = {
+//   dispatch: PropTypes.func.isRequired
+// };
 
-const App = connect(mapStateToProps)(Main);
+// const App = connect(mapStateToProps)(Main);
 
 ReactDOM.render(
   <Provider store={store}>
     <section>
-      <App/>
+      <Main/>
     </section>
   </Provider>,
   document.getElementById('app')

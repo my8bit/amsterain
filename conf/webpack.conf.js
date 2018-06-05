@@ -17,6 +17,7 @@ module.exports = {
       rules: {
         'no-warning-comments': 'off',
         'no-debugger': 'off',
+        'no-console': 'off',
         'no-alert': 'off'
       }
     },

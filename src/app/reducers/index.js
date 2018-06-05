@@ -1,21 +1,4 @@
-import {colors} from 'config';
 import {getRainingTicks} from '../libs/tick.js';
-
-const savedColor = colors[1];
-
-const getColor = color => {
-  window.localStorage.setItem('color', color);
-  return {color};
-};
-
-export const representationReducer = (state = {color: savedColor}, action) => {
-  switch (action.type) {
-    case 'CHANGE_BACKGROUND':
-      return getColor(action.color);
-    default:
-      return state;
-  }
-};
 
 export const userReducer = (state = {name: '', photo: ''}, action) => {
   switch (action.type) {
@@ -40,13 +23,14 @@ export const userReducer = (state = {name: '', photo: ''}, action) => {
   }
 };
 
-export const loadReducer = (state = {time1: [], preceptoin1: [], data: []}, action) => {
+export const loadReducer = (state = {
+  victoryChartData: []
+}, action) => {
   switch (action.type) {
     case 'LOAD':
       return Object.assign({}, state, {
         data: action.data,
-        time1: ['x'].concat(getRainingTicks(action.data)),
-        preceptoin1: ['time'].concat(action.data.map(item => item.precipitation))
+        victoryChartData: getRainingTicks(action.data)
       });
     default:
       return state;
@@ -64,4 +48,3 @@ export const tooltipReducer = (state = {value: 0, time: ''}, action) => {
       return state;
   }
 };
-

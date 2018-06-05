@@ -1,103 +1,236 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import _ from 'lodash';
-import BillboardChart from 'react-billboard.js';
 import {loadWeerAction} from '../libs/firebase.auth';
+import {VictoryTooltip, Flyout, VictoryVoronoiContainer, Line, VictoryCursorContainer, VictoryLabel, VictoryArea, VictoryAxis, VictoryChart, VictoryTheme} from 'victory';
+console.log(Line, Flyout, VictoryTooltip, VictoryCursorContainer, VictoryVoronoiContainer);  // eslint-disable-line no-console
+// TODO: add theme
+
 class TimerWidget extends Component {
-  shouldComponentUpdate(nextProps) {
-    return !_.isEqual(nextProps.time1, this.props.time1);
-  }
-  componentWillMount() {
+  componentDidMount() {
     const {dispatch} = this.props;
     dispatch(loadWeerAction());
   }
   render() {
-    const {preceptoin1, time1, dispatch} = this.props;
-    const ch = ch => {
-      this.chartWidth = ch && ch.chart.element;
-    };
+    const {victoryChartData} = this.props;
     return (
       <div
         className="container"
         >
-        <BillboardChart
-          className="chart"
-          id="chart"
-          ref={ch}
-          data={{
-            x: 'x',
-            type: 'area-spline',
-            xFormat: '%H:%M',
-            columns: [
-              time1,
-              preceptoin1
-            ]
-          }}
-          legend={{show: false}}
-          padding={{right: 30, left: 30}}
-          point={{show: false}}
-          color={{pattern: ['lightskyblue']}}
-          tooltip={{
-            contents: d => {
-              const min = d[0].x.getMinutes() < 10 ? `0${d[0].x.getMinutes()}` : d[0].x.getMinutes();
-              const time = `${d[0].x.getHours()}:${min}`;
-              const value = d[0].value;
-              dispatch({
-                type: 'CHANGE_TIP',
-                value,
-                time
-              });
-            }
-          }}
-          grid={{
-            y: {
-              lines: [
-                {value: 100, text: 'Light'},
-                {value: 255, text: 'Heavy', class: 'heavy'}
-              ]
-            },
-            x: {
-              show: true,
-              lines: [
-                {value: (new Date()), text: 'Now', position: 'start'}
-              ]
-            }
-          }}
-          axis={{
-            y: {max: 300, show: false},
-            x: {
-              label: 'Time',
-              type: 'timeseries',
-              tick: {
-                count: () => {
-                  // TODO
-                  const width = this.chartWidth && this.chartWidth.offsetWidth || 0;
-                  return Math.round(width / 75);
-                },
-                format: '%H:%M'
-              }
-            }
-          }}
+        <VictoryChart
+          theme={VictoryTheme.material}
+          domain={{y: [0, 60]}}
+          scale={{x: 'time'}}
+          containerComponent={
+            <VictoryVoronoiContainer
+              voronoiDimension="x"
+              labels={d => {
+                const time = d.time.toLocaleTimeString([], {
+                  hour12: false,
+                  hour: '2-digit',
+                  minute: '2-digit'
+                });
+                const precep = Math.round(d.precep); // TODO
+                const rain = precep ? `☔ ${precep}mm/h ${time}` : '';
+                return rain;// `${rain}\n${time}`;
+                // return console.log(d) || // eslint-disable-line no-console
+                // `${Math.round(d.precep)}`;
+              }}
+              labelComponent={<VictoryTooltip
+                labelComponent={<VictoryLabel
+                  y={25}
+                  style={{
+                    fill: 'white',
+                    fontSize: 14,
+                    fontFamily: '"Helvetica Neue", "Roboto", sans-serif'
+                  }}
+                />}
+                flyoutComponent={<Flyout
+                  y={300}
+                  height="1"
+                  cornerRadius="0"
+                  width="1"
+                  pointerLength="255"
+                  pointerWidth="1"
+                />}
+                flyoutStyle={{fill: 'red', stroke: 'red'}}
+              />}
+            />
+          }
+          >
+          <VictoryLabel
+            text={"Heavy"}
+            x={266}
+            y={82}
+            style={{
+              fill: 'white' // TODO theme
+            }}
           />
+          <VictoryLabel
+            text={"Moderate"}
+            x={245}
+            y={248}
+            style={{
+              fill: 'white' // TODO theme
+            }}
+          />
+          <VictoryLabel
+            text={"Slight"}
+            x={270}
+            y={282}
+            style={{
+              fill: 'white' // TODO theme
+            }}
+          />
+          <VictoryAxis dependentAxis
+            tickValues={[2, 10, 50]}
+            style={{
+              axis: {
+                fill: 'transparent', // TODO theme
+                stroke: 'transparent' // TODO theme
+              },
+              label: {
+                fill: 'white' // TODO theme
+              },
+              ticks: {
+                strokeWidth: 0
+              },
+              tickLabels: {
+                fill: 'transparent' // TODO theme
+              },
+              grid: {
+                fill: 'white',
+                strokeWidth: 2
+              }
+            }}
+          />
+          <VictoryAxis
+            tickFormat={time => time.toLocaleTimeString([], {
+              hour12: false,
+              hour: '2-digit',
+              minute: '2-digit'
+            })}
+            style={{
+              tickLabels: {
+                fill: 'white' // TODO theme
+              },
+              grid: {
+                // strokeWidth: 0
+              }
+            }}
+            />
+          <VictoryArea
+            theme={VictoryTheme.material}
+            style={{
+              data: {
+                fill: 'lightskyblue'
+              }
+            }}
+            interpolation="monotoneX"
+            animate={true}
+            data={victoryChartData}
+            x="time"
+            y="precep"
+            />
+          </VictoryChart>
       </div>
    );
   }
 }
 
+/*
+TODO Component for VictoryChart
+            <VictoryVoronoiContainer
+              voronoiDimension="x"
+              labels={d => {
+                return console.log(d) || // eslint-disable-line no-console
+                `${Math.round(d.precep)}`;
+              }}
+              labelComponent={
+                <VictoryTooltip
+                  labelComponent={<VictoryLabel dy={20}/>}
+                  flyoutComponent={<Flyout/>}
+                  flyoutStyle={{fill: 'white', stroke: 'white'}}
+                />
+              }
+            />
+
+            <VictoryVoronoiContainer
+              labelComponent={
+                <VictoryLabel
+                  style={{
+                    fill: 'white' // TODO theme
+                  }}
+                />
+              }
+              voronoiDimension="y"
+              labels={d => `${d.precep} lll}`}
+           />
+
+            <VictoryCursorContainer
+              cursorLabel={data => {
+                return `${data.x.toLocaleTimeString([], {
+                  hour12: false,
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}\n0.3mm/h`;
+              }}
+              onCursorChange={() => {
+                // console.log(value); // eslint-disable-line no-console
+                // return `${value}\n0.3mm/h`;
+                // const min = value.getMinutes() < 10 ? `0${value.getMinutes()}` : value.getMinutes();
+                // const time = `${value.getHours()}:${min}`;
+                // dispatch({
+                //   type: 'CHANGE_TIP',
+                //   value: 0,
+                //   time
+                // });
+              }}
+              cursorLabelComponent={
+                <VictoryLabel
+                  style={{
+                    fill: 'white' // TODO theme
+                  }}
+                />
+              }
+              cursorComponent={
+                <Line
+                  style={{
+                    stroke: 'white',
+                    strokeWidth: 2,
+                    tickLabels: {
+                      stroke: 'white',
+                      fill: 'white' // TODO theme
+                    }
+                  }}
+                />
+              }
+              cursorDimension="x"
+              style={{
+                label: {
+                  stroke: 'white',
+                  fill: 'white' // TODO theme
+                },
+                data: {
+                  strokeWidth: 1,
+                  stroke: 'white',
+                  fill: 'white'
+                }
+              }}
+            />
+ */
+
 TimerWidget.propTypes = {
-  data: PropTypes.array,
-  time1: PropTypes.array,
-  preceptoin1: PropTypes.array,
   value: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  victoryChartData: PropTypes.array.isRequired
 };
 
 const mapStateToProps = store => {
   const {value, time} = store.tooltipReducer;
-  const {data, time1, preceptoin1} = store.loadReducer;
-  return {data, value, time, time1, preceptoin1};
+  const {victoryChartData} = store.loadReducer;
+  return {value, time, victoryChartData};
 };
 
 export const Timer = connect(mapStateToProps)(TimerWidget);
