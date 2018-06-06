@@ -13,20 +13,16 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import Helmet from 'react-helmet';
 // Use HashRouter for Electron
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {HomeCmp} from './app/layout/home.jsx';
 import {AboutCmp} from './app/layout/about.jsx';
 import {SidebarCmp} from './app/components/side-bar.jsx';
+import {NotFound} from './app/layout/not-found.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
 import './index.scss';
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.update = this.forceUpdate.bind(this);
-  }
-
   render() {
     return (
       <main>
@@ -44,7 +40,6 @@ class Main extends Component {
             {rel: 'icon', type: 'image/png', href: 'static/favicon-128.png', sizes: '128x128'}
           ]}
           meta={[
-            {name: 'description', content: 'Amsterdam neerslag komende 2 uur'},
             {name: 'application-name', content: textContent},
             {name: 'apple-mobile-web-app-capable', content: 'yes'},
             {name: 'mobile-web-app-capable', content: 'yes'},
@@ -62,8 +57,11 @@ class Main extends Component {
               <div id="close-icon"><span></span><span></span><span></span></div>
             </label>
             <Route path="/" component={SidebarCmp}/>
-            <Route exact path="/" component={HomeCmp}/>
-            <Route exact path="/about" component={AboutCmp}/>
+            <Switch>
+              <Route exact path="/" component={HomeCmp}/>
+              <Route exact path="/about" component={AboutCmp}/>
+              <Route component={NotFound}/>
+            </Switch>
           </div>
         </Router>
       </main>

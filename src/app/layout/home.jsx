@@ -5,7 +5,7 @@ export class HomeCmp extends Component {
   render() {
     return (
       <section id="home" className="site-wrap">
-        <div className="menu-background transparent">Precipitation</div>
+        <div className="menu-background transparent"><h1>Precipitation</h1></div>
         <Timer/>
       </section>
     );
