@@ -67,7 +67,8 @@ module.exports = {
       FIREBASE_DATABASE_URL: JSON.stringify(process.env.WEER_FIREBASE_DATABASE_URL),
       FIREBASE_PROJECT_ID: JSON.stringify(process.env.WEER_FIREBASE_PROJECT_ID),
       FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.WEER_FIREBASE_STORAGE_BUCKET),
-      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.WEER_FIREBASE_MESSEGING_SENDER_ID)
+      FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.WEER_FIREBASE_MESSEGING_SENDER_ID),
+      DOMAIN: JSON.stringify(process.env.URL) || ''
     }),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),

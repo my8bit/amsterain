@@ -60,11 +60,13 @@ main {
 
 .menu-background {
   height: 2.8em;
-  color: white;
-  font-weight: 300;
-  line-height: 2.8em;
-  font-size: 1.4em;
-  text-align: center;
+  h1 {
+    color: white;
+    font-weight: 300;
+    line-height: 2.8em;
+    font-size: 1.4em;
+    text-align: center;
+  }
   // padding-right: 1em;
   .value {
     display: inline-block;
