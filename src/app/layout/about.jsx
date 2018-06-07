@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
+import Helmet from 'react-helmet';
 
 export class AboutCmp extends Component {
   render() {
     return (
       <section id="about" className="about site-wrap">
-        <div className="menu-background dark"><h1>Informatie</h1></div>
+        <Helmet
+          link={[{rel: 'canonical', href: `${URL}${encodeURI(window.location.pathname)}`}]}
+          title="About"
+        />
+        <div className="menu-background dark"><h1>About</h1></div>
         <div className="container description">
           <div><h2>Amsterdam neerslag</h2></div>
           <img src="static/favicon-96x96.png"/>
