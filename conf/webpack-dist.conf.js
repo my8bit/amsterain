@@ -48,9 +48,10 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: path.resolve(__dirname, '../src/robots.txt')},
       {from: path.resolve(__dirname, '../src/sitemap.txt')},
+      {from: path.resolve(__dirname, '../src/sitemap.xml')},
       {from: path.resolve(__dirname, '../src/_redirects')},
       {from: path.resolve(__dirname, '../src/static'), to: 'static'},
-      {from: path.resolve(__dirname, '../src/manifest.json')},
+      {from: path.resolve(__dirname, '../src/manifest.json')}
     ]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
