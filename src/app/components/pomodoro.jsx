@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {loadWeerAction} from '../libs/firebase.auth';
-import {VictoryTooltip, Flyout, VictoryVoronoiContainer, Line, VictoryCursorContainer, VictoryLabel, VictoryArea, VictoryAxis, VictoryChart, VictoryTheme} from 'victory';
-console.log(Line, Flyout, VictoryTooltip, VictoryCursorContainer, VictoryVoronoiContainer);  // eslint-disable-line no-console
+import {VictoryTooltip, Flyout, VictoryVoronoiContainer, VictoryLabel, VictoryArea, VictoryAxis, VictoryChart, VictoryTheme} from 'victory';
 // TODO: add theme
 
 class TimerWidget extends Component {
@@ -31,10 +30,7 @@ class TimerWidget extends Component {
                   minute: '2-digit'
                 });
                 const precep = Math.round(d.precep); // TODO
-                const rain = precep ? `☔ ${precep}mm/h ${time}` : '';
-                return rain;// `${rain}\n${time}`;
-                // return console.log(d) || // eslint-disable-line no-console
-                // `${Math.round(d.precep)}`;
+                return precep ? `☔ ${precep}mm/h ${time}` : '';
               }}
               labelComponent={<VictoryTooltip
                 labelComponent={<VictoryLabel
@@ -137,88 +133,6 @@ class TimerWidget extends Component {
    );
   }
 }
-
-/*
-TODO Component for VictoryChart
-            <VictoryVoronoiContainer
-              voronoiDimension="x"
-              labels={d => {
-                return console.log(d) || // eslint-disable-line no-console
-                `${Math.round(d.precep)}`;
-              }}
-              labelComponent={
-                <VictoryTooltip
-                  labelComponent={<VictoryLabel dy={20}/>}
-                  flyoutComponent={<Flyout/>}
-                  flyoutStyle={{fill: 'white', stroke: 'white'}}
-                />
-              }
-            />
-
-            <VictoryVoronoiContainer
-              labelComponent={
-                <VictoryLabel
-                  style={{
-                    fill: 'white' // TODO theme
-                  }}
-                />
-              }
-              voronoiDimension="y"
-              labels={d => `${d.precep} lll}`}
-           />
-
-            <VictoryCursorContainer
-              cursorLabel={data => {
-                return `${data.x.toLocaleTimeString([], {
-                  hour12: false,
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}\n0.3mm/h`;
-              }}
-              onCursorChange={() => {
-                // console.log(value); // eslint-disable-line no-console
-                // return `${value}\n0.3mm/h`;
-                // const min = value.getMinutes() < 10 ? `0${value.getMinutes()}` : value.getMinutes();
-                // const time = `${value.getHours()}:${min}`;
-                // dispatch({
-                //   type: 'CHANGE_TIP',
-                //   value: 0,
-                //   time
-                // });
-              }}
-              cursorLabelComponent={
-                <VictoryLabel
-                  style={{
-                    fill: 'white' // TODO theme
-                  }}
-                />
-              }
-              cursorComponent={
-                <Line
-                  style={{
-                    stroke: 'white',
-                    strokeWidth: 2,
-                    tickLabels: {
-                      stroke: 'white',
-                      fill: 'white' // TODO theme
-                    }
-                  }}
-                />
-              }
-              cursorDimension="x"
-              style={{
-                label: {
-                  stroke: 'white',
-                  fill: 'white' // TODO theme
-                },
-                data: {
-                  strokeWidth: 1,
-                  stroke: 'white',
-                  fill: 'white'
-                }
-              }}
-            />
- */
 
 TimerWidget.propTypes = {
   value: PropTypes.number.isRequired,

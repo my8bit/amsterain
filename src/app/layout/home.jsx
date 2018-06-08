@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {Timer} from '../components/pomodoro.jsx';
+import {URL} from '../libs/common.js';
 
 export class HomeCmp extends Component {
   render() {

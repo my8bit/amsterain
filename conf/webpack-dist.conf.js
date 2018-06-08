@@ -2,11 +2,11 @@ const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SplitByPathPlugin = require('webpack-split-by-path');
 const autoprefixer = require('autoprefixer');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
-// require('offline-plugin/runtime').install();
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
   module: {
@@ -55,8 +55,20 @@ module.exports = {
     ]),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
-      inject: true
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        html5: true,
+        minifyCSS: true,
+        removeComments: true,
+        removeEmptyAttributes: true
+      },
+      inject: 'body'
     }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async'
+    }),
+    new PreloadWebpackPlugin(),
     new webpack.DefinePlugin({
       FIREBASE_API_KEY: JSON.stringify(process.env.WEER_FIREBASE_API_KEY),
       FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.WEER_FIREBASE_AUTH_DOMAIN),
@@ -66,22 +78,26 @@ module.exports = {
       FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.WEER_FIREBASE_MESSEGING_SENDER_ID),
       DOMAIN: JSON.stringify(process.env.URL)
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {unused: true, dead_code: true} // eslint-disable-line camelcase
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
     }),
-    new SplitByPathPlugin([{
-      name: 'vendor',
-      path: path.join(__dirname, '../node_modules')
-    }]),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        unused: true,
+        drop_console: true, // eslint-disable-line camelcase
+        dead_code: true // eslint-disable-line camelcase
+      }
+    }),
     new OfflinePlugin({
-      excludes: ['_redirects']
+      AppCache: false,
+      excludes: ['_redirects', 'sitemap.txt', 'sitemap.xml', 'robots.txt']
     })
   ],
   postcss: () => [autoprefixer],
   resolve: {
-    packageMains: [
-      'module'
-    ],
     alias: {
       config: path.resolve(__dirname, `../${conf.path.src('config.json')}`)
     }

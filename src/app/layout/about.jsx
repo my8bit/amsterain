@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import {URL} from '../libs/common.js';
 
 export class AboutCmp extends Component {
   render() {
