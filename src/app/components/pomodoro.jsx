@@ -37,8 +37,7 @@ class TimerWidget extends Component {
                   y={25}
                   style={{
                     fill: 'white',
-                    fontSize: 14,
-                    fontFamily: '"Helvetica Neue", "Roboto", sans-serif'
+                    fontSize: 14
                   }}
                 />}
                 flyoutComponent={<Flyout
