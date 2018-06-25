@@ -37,10 +37,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader'
-      },
-      {
         test: /\.(css|scss|sass)$/,
         loaders: [
           'style',
