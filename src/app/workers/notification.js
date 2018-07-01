@@ -9,6 +9,9 @@ registerPromise.then(registration => {
   messaging.useServiceWorker(registration);
   messaging.requestPermission().then(() => {
     messaging.onMessage(payload => {
+      const {notification} = payload;
+      const {title} = notification;
+      registration.showNotification(title, notification);
       console.log('[firebase-messaging-sw.js] Received foreground message ', payload);  // eslint-disable-line no-console
     });
   });

@@ -42,11 +42,11 @@ class TimerWidget extends Component {
                 />}
                 flyoutComponent={<Flyout
                   y={300}
-                  height="1"
-                  cornerRadius="0"
-                  width="1"
-                  pointerLength="255"
-                  pointerWidth="1"
+                  height={1}
+                  cornerRadius={0}
+                  width={1}
+                  pointerLength={255}
+                  pointerWidth={1}
                 />}
                 flyoutStyle={{fill: 'red', stroke: 'red'}}
               />}

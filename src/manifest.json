@@ -1,8 +1,7 @@
 {
-  "name": "Amsterdam Neerslag",
-  "short_name": "A'dam Neerslag",
-  "icons": [
-    {
+  "name": "Amsterdam Rain | AmsteRain | Amsterdam Neerslag",
+  "short_name": "AmsteRain",
+  "icons": [{
       "src": "static/mstile-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
@@ -14,11 +13,11 @@
       "density": 0.75
     },
     {
-      "src": "static/mstile-512x512.png",
+      "src": "static/favicon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "density": 1.0
-    }
+    },
     {
       "src": "static/favicon-196x196.png",
       "sizes": "196x196",

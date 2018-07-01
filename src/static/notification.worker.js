@@ -18,7 +18,7 @@ self.addEventListener('message', event => {
     client.postMessage(`Responding to ${event.data}`);
   }));
 });
-
+/*
 self.addEventListener('notificationclick', event => {
   event.waitUntil(clients.matchAll({
     includeUncontrolled: true, type: 'all'
@@ -39,3 +39,4 @@ self.addEventListener('message', event => {
   const sender = (event.ports && event.ports[0]) || event.source;
   sender.postMessage('Here are your queued notifications!');
 });
+*/
