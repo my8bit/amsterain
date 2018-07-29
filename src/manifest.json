@@ -1,6 +1,6 @@
 {
-  "name": "Amsterdam Neerslag",
-  "short_name": "A'dam Neerslag",
+  "name": "Amsterain",
+  "short_name": "Amasterain",
   "icons": [
     {
       "src": "static/mstile-144x144.png",
@@ -30,6 +30,6 @@
   "background_color": "#333131",
   "theme_color": "#333131",
   "start_url": "/",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait"
 }
