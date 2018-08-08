@@ -37,10 +37,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.tsx?$/,
-        loader: "ts-loader"
-      },
-      {
         test: /\.(css|scss|sass)$/,
         loaders: [
           'style',
@@ -69,7 +65,7 @@ module.exports = {
       FIREBASE_PROJECT_ID: JSON.stringify(process.env.WEER_FIREBASE_PROJECT_ID),
       FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.WEER_FIREBASE_STORAGE_BUCKET),
       FIREBASE_MESSEGING_SENDER_ID: JSON.stringify(process.env.WEER_FIREBASE_MESSEGING_SENDER_ID),
-      DOMAIN: JSON.stringify(process.env.URL) || ''
+      DOMAIN: JSON.stringify(process.env.URL) || '\'amsterain.nl\''
     }),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),

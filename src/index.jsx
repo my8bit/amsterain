@@ -8,7 +8,7 @@ Offline.install();
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-// import PropTypes from 'prop-types';
+import './app/workers/notification';
 
 import {Provider} from 'react-redux';
 import Helmet from 'react-helmet';
