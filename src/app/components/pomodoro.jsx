@@ -9,7 +9,6 @@ class TimerWidget extends Component {
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch(loadWeerAction());
-    throw new Error('Sentry error');
   }
 
   render() {
