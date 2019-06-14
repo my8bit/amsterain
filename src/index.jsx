@@ -50,6 +50,8 @@ class Main extends Component {
   }
 }
 
+myUndefinedFunction();
+
 // const mapStateToProps = store => {
 //   const {color} = store.representationReducer;
 //   return {color};
