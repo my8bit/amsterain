@@ -26,9 +26,6 @@ import {store} from './app/store';
 import './index.scss';
 
 class Main extends Component {
-  componentDidMount() {
-    throw new Error('Sentry');
-  }
   render() {
     return (
       <main>
