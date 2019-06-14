@@ -26,6 +26,9 @@ import './index.scss';
 Sentry.init({dsn: 'https://e64c7d8d3ede4d2ea33489852d43db2f@sentry.io/1480411'});
 
 class Main extends Component {
+  componentDidMount() {
+    throw new Error('Sentry');
+  }
   render() {
     return (
       <main>
