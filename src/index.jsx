@@ -7,6 +7,7 @@ Offline.install();
 // TODO: https://mobiforge.com/design-development/taking-web-offline-service-workers
 
 import React, {Component} from 'react';
+import * as Sentry from '@sentry/browser';
 import ReactDOM from 'react-dom';
 import './app/workers/notification';
 
@@ -21,6 +22,8 @@ import {NotFound} from './app/layout/not-found.jsx';
 import {textContent} from './config';
 import {store} from './app/store';
 import './index.scss';
+
+Sentry.init({dsn: 'https://e64c7d8d3ede4d2ea33489852d43db2f@sentry.io/1480411'});
 
 class Main extends Component {
   render() {
@@ -49,8 +52,6 @@ class Main extends Component {
     );
   }
 }
-
-myUndefinedFunction();
 
 // const mapStateToProps = store => {
 //   const {color} = store.representationReducer;
