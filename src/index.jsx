@@ -1,4 +1,6 @@
 import * as Sentry from '@sentry/browser';
+Sentry.init({dsn: 'https://e64c7d8d3ede4d2ea33489852d43db2f@sentry.io/1480411'});
+
 import 'babel-polyfill';
 import Offline from 'offline-plugin/runtime';
 Offline.install();
@@ -23,12 +25,7 @@ import {textContent} from './config';
 import {store} from './app/store';
 import './index.scss';
 
-Sentry.init({dsn: 'https://e64c7d8d3ede4d2ea33489852d43db2f@sentry.io/1480411'});
-
 class Main extends Component {
-  componentDidMount() {
-    throw new Error('Sentry');
-  }
   render() {
     return (
       <main>
