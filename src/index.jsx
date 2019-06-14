@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import 'babel-polyfill';
 import Offline from 'offline-plugin/runtime';
 Offline.install();
@@ -7,7 +8,6 @@ Offline.install();
 // TODO: https://mobiforge.com/design-development/taking-web-offline-service-workers
 
 import React, {Component} from 'react';
-import * as Sentry from '@sentry/browser';
 import ReactDOM from 'react-dom';
 import './app/workers/notification';
 

@@ -10,6 +10,7 @@ class TimerWidget extends Component {
     const {dispatch} = this.props;
     dispatch(loadWeerAction());
   }
+
   render() {
     const {victoryChartData} = this.props;
     return (
